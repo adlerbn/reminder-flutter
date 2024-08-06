@@ -1,26 +1,25 @@
 import 'package:flutter/material.dart';
-import 'package:reminder/notification_page.dart';
+import 'package:flutter/services.dart';
+import 'package:reminder/application/app.dart';
+import 'package:reminder/service/notification_manager.dart';
 
-void main() {
-  runApp(const MyApp());
+Future<void> main() async {
+  await NotificationManager.initialize();
+  await configureFullScreen();
+  await configureSystemUIOverlayStyle();
+
+  runApp(const App());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+Future<void> configureFullScreen() async {
+  SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
+}
 
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      theme: ThemeData(
-        useMaterial3: true,
-        colorSchemeSeed: Colors.redAccent,
-      ),
-      darkTheme: ThemeData(
-        useMaterial3: true,
-        brightness: Brightness.dark,
-        colorSchemeSeed: Colors.redAccent,
-      ),
-      home: NotificationPage(),
-    );
-  }
+Future<void> configureSystemUIOverlayStyle() async {
+  SystemChrome.setSystemUIOverlayStyle(
+    const SystemUiOverlayStyle(
+      systemNavigationBarColor: Colors.transparent,
+      statusBarColor: Colors.transparent,
+    ),
+  );
 }

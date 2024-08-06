@@ -1,18 +1,20 @@
 import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:flutter/material.dart';
 
+const channelGroupKey = 'reminder_channel_group';
+const channelKey = 'reminder_channel';
+
 class NotificationManager {
-  Future<void> initialize() async {
+  static Future<void> initialize() async {
     AwesomeNotifications().initialize(
-      // set the icon to null if you want to use the default app icon
-      'resource://drawable/res_app_icon',
+      null,
       [
         NotificationChannel(
-          channelGroupKey: 'reminder_channel_group',
-          channelKey: 'reminder_channel',
+          channelGroupKey: channelGroupKey,
+          channelKey: channelKey,
           channelName: 'Reminder Channel',
           channelDescription: 'Reminders',
-          defaultColor: const Color(0xFF9D50DD),
+          defaultColor: Colors.redAccent,
           ledColor: Colors.white,
           playSound: true,
         ),
@@ -20,7 +22,7 @@ class NotificationManager {
       // Channel groups are only visual and are not required
       channelGroups: [
         NotificationChannelGroup(
-          channelGroupKey: 'reminder_channel_group',
+          channelGroupKey: channelGroupKey,
           channelGroupName: 'Reminder group',
         ),
       ],
@@ -45,12 +47,13 @@ class NotificationManager {
     await AwesomeNotifications().createNotification(
       content: NotificationContent(
         id: 10,
-        channelKey: 'reminder_channel',
+        channelKey: channelKey,
+        groupKey: channelGroupKey,
         actionType: ActionType.Default,
         title: 'Hello World!',
         body: 'This is my first notification!',
         criticalAlert: true,
-        category: NotificationCategory.Alarm,
+        category: NotificationCategory.Reminder,
       ),
       schedule: NotificationInterval(
         interval: 60,

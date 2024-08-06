@@ -11,9 +11,9 @@ dependencies:
   flutter:
     sdk: flutter
 
-  awesome_notifications_core: ^0.9.3
-  awesome_notifications: ^0.9.3+1
-  flutter_timezone: ^2.0.1
+  awesome_notifications_core: any
+  awesome_notifications: any
+  flutter_timezone: ^2.1.0
   cupertino_icons: ^1.0.8
   timezone: ^0.9.4
 

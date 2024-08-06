@@ -1,14 +1,23 @@
+import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:flutter/material.dart';
-import 'package:reminder/notification_manager.dart';
+import 'package:reminder/service/notification_manager.dart';
 
 class NotificationPage extends StatelessWidget {
+  final ReceivedAction? receivedAction;
   final manager = NotificationManager();
 
-  NotificationPage({super.key});
+  NotificationPage({
+    super.key,
+    this.receivedAction,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: const Text('Notification'),
+        centerTitle: true,
+      ),
       body: SafeArea(
         child: Center(
           child: Column(
@@ -46,7 +55,6 @@ class NotificationPage extends StatelessWidget {
   }
 
   Future<void> _pushNotificationButtonAction() async {
-    await manager.initialize();
     await manager.requestPermission();
     await manager.create();
   }
