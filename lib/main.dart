@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:reminder/application/app.dart';
-import 'package:reminder/service/notification_manager.dart';
+import 'package:reminder/core/db/database.dart';
+import 'package:reminder/core/injection/injection.dart';
+import 'package:reminder/core/services/notification_manager.dart';
 
 Future<void> main() async {
   await NotificationManager.initialize();
   await configureFullScreen();
   await configureSystemUIOverlayStyle();
+  await configureDependencies();
+  await initializeDatabase();
 
   runApp(const App());
 }

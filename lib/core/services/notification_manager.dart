@@ -1,9 +1,11 @@
 import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:flutter/material.dart';
+import 'package:injectable/injectable.dart';
 
 const channelGroupKey = 'reminder_channel_group';
 const channelKey = 'reminder_channel';
 
+@injectable
 class NotificationManager {
   static Future<void> initialize() async {
     AwesomeNotifications().initialize(
@@ -43,10 +45,13 @@ class NotificationManager {
     });
   }
 
-  Future<void> create() async {
+  Future<void> create({
+    required int id,
+    required int interval,
+  }) async {
     await AwesomeNotifications().createNotification(
       content: NotificationContent(
-        id: 10,
+        id: id,
         channelKey: channelKey,
         groupKey: channelGroupKey,
         actionType: ActionType.Default,
@@ -56,7 +61,7 @@ class NotificationManager {
         category: NotificationCategory.Reminder,
       ),
       schedule: NotificationInterval(
-        interval: 60,
+        interval: interval,
         allowWhileIdle: true,
         repeats: true,
       ),

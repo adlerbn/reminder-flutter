@@ -1,8 +1,13 @@
 import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:flutter/material.dart';
-import 'package:reminder/pages/home_page.dart';
-import 'package:reminder/pages/notification_page.dart';
-import 'package:reminder/service/notification_controller.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:reminder/core/injection/injection.dart';
+import 'package:reminder/core/services/notification_controller.dart';
+import 'package:reminder/pages/create_notification/bloc/create_notification_bloc.dart';
+import 'package:reminder/pages/create_notification/presentation/create_notification_page.dart';
+import 'package:reminder/pages/home/presentation/home_page.dart';
+import 'package:reminder/pages/notification/bloc/notification_bloc.dart';
+import 'package:reminder/pages/notification/presentation/notification_page.dart';
 
 class App extends StatefulWidget {
   static final GlobalKey<NavigatorState> navigatorKey =
@@ -54,7 +59,20 @@ class _AppState extends State<App> {
           case '/notification-page':
             return MaterialPageRoute(builder: (context) {
               final receivedAction = settings.arguments as ReceivedAction?;
-              return NotificationPage(receivedAction: receivedAction);
+
+              return BlocProvider(
+                create: (context) =>
+                    locator<NotificationBloc>()..add(NotificationEvent.fetch()),
+                child: NotificationPage(receivedAction: receivedAction),
+              );
+            });
+
+          case '/notification-page/create-notification-page':
+            return MaterialPageRoute(builder: (context) {
+              return BlocProvider(
+                create: (context) => locator<CreateNotificationBloc>(),
+                child: const CreateNotificationPage(),
+              );
             });
 
           default:

@@ -12,12 +12,18 @@ class HomePage extends StatelessWidget {
       ),
       body: ListView(
         children: [
-          ListTile(
-            onTap: () => Navigator.of(context).pushNamed('/notification-page'),
-            title: Text("Notification"),
-          ),
+          _notificationPage(context),
         ],
       ),
+    );
+  }
+
+  Widget _notificationPage(BuildContext context) {
+    return ListTile(
+      onTap: () => Navigator.of(context).pushNamed('/notification-page'),
+      title: const Text("Notification"),
+      leading: const Icon(Icons.notifications),
+      trailing: const Icon(Icons.chevron_right_rounded),
     );
   }
 }
