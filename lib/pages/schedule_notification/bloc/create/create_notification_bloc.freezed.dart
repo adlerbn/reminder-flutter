@@ -15,7 +15,7 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
-mixin _$CreateNotificationEvent {
+mixin _$CreateScheduleNotificationEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String name) changeName,
@@ -75,24 +75,26 @@ mixin _$CreateNotificationEvent {
 }
 
 /// @nodoc
-abstract class $CreateNotificationEventCopyWith<$Res> {
-  factory $CreateNotificationEventCopyWith(CreateNotificationEvent value,
-          $Res Function(CreateNotificationEvent) then) =
-      _$CreateNotificationEventCopyWithImpl<$Res, CreateNotificationEvent>;
+abstract class $CreateScheduleNotificationEventCopyWith<$Res> {
+  factory $CreateScheduleNotificationEventCopyWith(
+          CreateScheduleNotificationEvent value,
+          $Res Function(CreateScheduleNotificationEvent) then) =
+      _$CreateScheduleNotificationEventCopyWithImpl<$Res,
+          CreateScheduleNotificationEvent>;
 }
 
 /// @nodoc
-class _$CreateNotificationEventCopyWithImpl<$Res,
-        $Val extends CreateNotificationEvent>
-    implements $CreateNotificationEventCopyWith<$Res> {
-  _$CreateNotificationEventCopyWithImpl(this._value, this._then);
+class _$CreateScheduleNotificationEventCopyWithImpl<$Res,
+        $Val extends CreateScheduleNotificationEvent>
+    implements $CreateScheduleNotificationEventCopyWith<$Res> {
+  _$CreateScheduleNotificationEventCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of CreateNotificationEvent
+  /// Create a copy of CreateScheduleNotificationEvent
   /// with the given fields replaced by the non-null parameter values.
 }
 
@@ -107,13 +109,13 @@ abstract class _$$ChangeNameImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$ChangeNameImplCopyWithImpl<$Res>
-    extends _$CreateNotificationEventCopyWithImpl<$Res, _$ChangeNameImpl>
-    implements _$$ChangeNameImplCopyWith<$Res> {
+    extends _$CreateScheduleNotificationEventCopyWithImpl<$Res,
+        _$ChangeNameImpl> implements _$$ChangeNameImplCopyWith<$Res> {
   __$$ChangeNameImplCopyWithImpl(
       _$ChangeNameImpl _value, $Res Function(_$ChangeNameImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of CreateNotificationEvent
+  /// Create a copy of CreateScheduleNotificationEvent
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -139,7 +141,7 @@ class _$ChangeNameImpl implements ChangeName {
 
   @override
   String toString() {
-    return 'CreateNotificationEvent.changeName(name: $name)';
+    return 'CreateScheduleNotificationEvent.changeName(name: $name)';
   }
 
   @override
@@ -153,7 +155,7 @@ class _$ChangeNameImpl implements ChangeName {
   @override
   int get hashCode => Object.hash(runtimeType, name);
 
-  /// Create a copy of CreateNotificationEvent
+  /// Create a copy of CreateScheduleNotificationEvent
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
@@ -242,12 +244,12 @@ class _$ChangeNameImpl implements ChangeName {
   }
 }
 
-abstract class ChangeName implements CreateNotificationEvent {
+abstract class ChangeName implements CreateScheduleNotificationEvent {
   factory ChangeName({required final String name}) = _$ChangeNameImpl;
 
   String get name;
 
-  /// Create a copy of CreateNotificationEvent
+  /// Create a copy of CreateScheduleNotificationEvent
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ChangeNameImplCopyWith<_$ChangeNameImpl> get copyWith =>
@@ -265,13 +267,13 @@ abstract class _$$ChangeStartDateImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$ChangeStartDateImplCopyWithImpl<$Res>
-    extends _$CreateNotificationEventCopyWithImpl<$Res, _$ChangeStartDateImpl>
-    implements _$$ChangeStartDateImplCopyWith<$Res> {
+    extends _$CreateScheduleNotificationEventCopyWithImpl<$Res,
+        _$ChangeStartDateImpl> implements _$$ChangeStartDateImplCopyWith<$Res> {
   __$$ChangeStartDateImplCopyWithImpl(
       _$ChangeStartDateImpl _value, $Res Function(_$ChangeStartDateImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of CreateNotificationEvent
+  /// Create a copy of CreateScheduleNotificationEvent
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -297,7 +299,7 @@ class _$ChangeStartDateImpl implements ChangeStartDate {
 
   @override
   String toString() {
-    return 'CreateNotificationEvent.changeStartDate(startDate: $startDate)';
+    return 'CreateScheduleNotificationEvent.changeStartDate(startDate: $startDate)';
   }
 
   @override
@@ -312,7 +314,7 @@ class _$ChangeStartDateImpl implements ChangeStartDate {
   @override
   int get hashCode => Object.hash(runtimeType, startDate);
 
-  /// Create a copy of CreateNotificationEvent
+  /// Create a copy of CreateScheduleNotificationEvent
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
@@ -402,13 +404,13 @@ class _$ChangeStartDateImpl implements ChangeStartDate {
   }
 }
 
-abstract class ChangeStartDate implements CreateNotificationEvent {
+abstract class ChangeStartDate implements CreateScheduleNotificationEvent {
   factory ChangeStartDate({required final DateTime startDate}) =
       _$ChangeStartDateImpl;
 
   DateTime get startDate;
 
-  /// Create a copy of CreateNotificationEvent
+  /// Create a copy of CreateScheduleNotificationEvent
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ChangeStartDateImplCopyWith<_$ChangeStartDateImpl> get copyWith =>
@@ -426,14 +428,14 @@ abstract class _$$ChangeFrequencyTypeImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$ChangeFrequencyTypeImplCopyWithImpl<$Res>
-    extends _$CreateNotificationEventCopyWithImpl<$Res,
+    extends _$CreateScheduleNotificationEventCopyWithImpl<$Res,
         _$ChangeFrequencyTypeImpl>
     implements _$$ChangeFrequencyTypeImplCopyWith<$Res> {
   __$$ChangeFrequencyTypeImplCopyWithImpl(_$ChangeFrequencyTypeImpl _value,
       $Res Function(_$ChangeFrequencyTypeImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of CreateNotificationEvent
+  /// Create a copy of CreateScheduleNotificationEvent
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -459,7 +461,7 @@ class _$ChangeFrequencyTypeImpl implements ChangeFrequencyType {
 
   @override
   String toString() {
-    return 'CreateNotificationEvent.changeType(frequencyType: $frequencyType)';
+    return 'CreateScheduleNotificationEvent.changeType(frequencyType: $frequencyType)';
   }
 
   @override
@@ -474,7 +476,7 @@ class _$ChangeFrequencyTypeImpl implements ChangeFrequencyType {
   @override
   int get hashCode => Object.hash(runtimeType, frequencyType);
 
-  /// Create a copy of CreateNotificationEvent
+  /// Create a copy of CreateScheduleNotificationEvent
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
@@ -564,13 +566,13 @@ class _$ChangeFrequencyTypeImpl implements ChangeFrequencyType {
   }
 }
 
-abstract class ChangeFrequencyType implements CreateNotificationEvent {
+abstract class ChangeFrequencyType implements CreateScheduleNotificationEvent {
   factory ChangeFrequencyType({required final FrequencyType frequencyType}) =
       _$ChangeFrequencyTypeImpl;
 
   FrequencyType get frequencyType;
 
-  /// Create a copy of CreateNotificationEvent
+  /// Create a copy of CreateScheduleNotificationEvent
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ChangeFrequencyTypeImplCopyWith<_$ChangeFrequencyTypeImpl> get copyWith =>
@@ -589,14 +591,14 @@ abstract class _$$ChangeFrequencyAmountImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$ChangeFrequencyAmountImplCopyWithImpl<$Res>
-    extends _$CreateNotificationEventCopyWithImpl<$Res,
+    extends _$CreateScheduleNotificationEventCopyWithImpl<$Res,
         _$ChangeFrequencyAmountImpl>
     implements _$$ChangeFrequencyAmountImplCopyWith<$Res> {
   __$$ChangeFrequencyAmountImplCopyWithImpl(_$ChangeFrequencyAmountImpl _value,
       $Res Function(_$ChangeFrequencyAmountImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of CreateNotificationEvent
+  /// Create a copy of CreateScheduleNotificationEvent
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -622,7 +624,7 @@ class _$ChangeFrequencyAmountImpl implements ChangeFrequencyAmount {
 
   @override
   String toString() {
-    return 'CreateNotificationEvent.changeAmount(frequencyAmount: $frequencyAmount)';
+    return 'CreateScheduleNotificationEvent.changeAmount(frequencyAmount: $frequencyAmount)';
   }
 
   @override
@@ -637,7 +639,7 @@ class _$ChangeFrequencyAmountImpl implements ChangeFrequencyAmount {
   @override
   int get hashCode => Object.hash(runtimeType, frequencyAmount);
 
-  /// Create a copy of CreateNotificationEvent
+  /// Create a copy of CreateScheduleNotificationEvent
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
@@ -727,13 +729,14 @@ class _$ChangeFrequencyAmountImpl implements ChangeFrequencyAmount {
   }
 }
 
-abstract class ChangeFrequencyAmount implements CreateNotificationEvent {
+abstract class ChangeFrequencyAmount
+    implements CreateScheduleNotificationEvent {
   factory ChangeFrequencyAmount({required final int frequencyAmount}) =
       _$ChangeFrequencyAmountImpl;
 
   int get frequencyAmount;
 
-  /// Create a copy of CreateNotificationEvent
+  /// Create a copy of CreateScheduleNotificationEvent
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ChangeFrequencyAmountImplCopyWith<_$ChangeFrequencyAmountImpl>
@@ -749,13 +752,14 @@ abstract class _$$SaveNotificationImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$SaveNotificationImplCopyWithImpl<$Res>
-    extends _$CreateNotificationEventCopyWithImpl<$Res, _$SaveNotificationImpl>
+    extends _$CreateScheduleNotificationEventCopyWithImpl<$Res,
+        _$SaveNotificationImpl>
     implements _$$SaveNotificationImplCopyWith<$Res> {
   __$$SaveNotificationImplCopyWithImpl(_$SaveNotificationImpl _value,
       $Res Function(_$SaveNotificationImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of CreateNotificationEvent
+  /// Create a copy of CreateScheduleNotificationEvent
   /// with the given fields replaced by the non-null parameter values.
 }
 
@@ -766,7 +770,7 @@ class _$SaveNotificationImpl implements SaveNotification {
 
   @override
   String toString() {
-    return 'CreateNotificationEvent.save()';
+    return 'CreateScheduleNotificationEvent.save()';
   }
 
   @override
@@ -859,29 +863,31 @@ class _$SaveNotificationImpl implements SaveNotification {
   }
 }
 
-abstract class SaveNotification implements CreateNotificationEvent {
+abstract class SaveNotification implements CreateScheduleNotificationEvent {
   factory SaveNotification() = _$SaveNotificationImpl;
 }
 
 /// @nodoc
-mixin _$CreateNotificationState {
+mixin _$CreateScheduleNotificationState {
   String get name => throw _privateConstructorUsedError;
   DateTime get startDate => throw _privateConstructorUsedError;
   FrequencyType get frequencyType => throw _privateConstructorUsedError;
   int get frequencyAmount => throw _privateConstructorUsedError;
 
-  /// Create a copy of CreateNotificationState
+  /// Create a copy of CreateScheduleNotificationState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  $CreateNotificationStateCopyWith<CreateNotificationState> get copyWith =>
-      throw _privateConstructorUsedError;
+  $CreateScheduleNotificationStateCopyWith<CreateScheduleNotificationState>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $CreateNotificationStateCopyWith<$Res> {
-  factory $CreateNotificationStateCopyWith(CreateNotificationState value,
-          $Res Function(CreateNotificationState) then) =
-      _$CreateNotificationStateCopyWithImpl<$Res, CreateNotificationState>;
+abstract class $CreateScheduleNotificationStateCopyWith<$Res> {
+  factory $CreateScheduleNotificationStateCopyWith(
+          CreateScheduleNotificationState value,
+          $Res Function(CreateScheduleNotificationState) then) =
+      _$CreateScheduleNotificationStateCopyWithImpl<$Res,
+          CreateScheduleNotificationState>;
   @useResult
   $Res call(
       {String name,
@@ -891,17 +897,17 @@ abstract class $CreateNotificationStateCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$CreateNotificationStateCopyWithImpl<$Res,
-        $Val extends CreateNotificationState>
-    implements $CreateNotificationStateCopyWith<$Res> {
-  _$CreateNotificationStateCopyWithImpl(this._value, this._then);
+class _$CreateScheduleNotificationStateCopyWithImpl<$Res,
+        $Val extends CreateScheduleNotificationState>
+    implements $CreateScheduleNotificationStateCopyWith<$Res> {
+  _$CreateScheduleNotificationStateCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of CreateNotificationState
+  /// Create a copy of CreateScheduleNotificationState
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -934,7 +940,7 @@ class _$CreateNotificationStateCopyWithImpl<$Res,
 
 /// @nodoc
 abstract class _$$NotificationStateImplCopyWith<$Res>
-    implements $CreateNotificationStateCopyWith<$Res> {
+    implements $CreateScheduleNotificationStateCopyWith<$Res> {
   factory _$$NotificationStateImplCopyWith(_$NotificationStateImpl value,
           $Res Function(_$NotificationStateImpl) then) =
       __$$NotificationStateImplCopyWithImpl<$Res>;
@@ -949,13 +955,14 @@ abstract class _$$NotificationStateImplCopyWith<$Res>
 
 /// @nodoc
 class __$$NotificationStateImplCopyWithImpl<$Res>
-    extends _$CreateNotificationStateCopyWithImpl<$Res, _$NotificationStateImpl>
+    extends _$CreateScheduleNotificationStateCopyWithImpl<$Res,
+        _$NotificationStateImpl>
     implements _$$NotificationStateImplCopyWith<$Res> {
   __$$NotificationStateImplCopyWithImpl(_$NotificationStateImpl _value,
       $Res Function(_$NotificationStateImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of CreateNotificationState
+  /// Create a copy of CreateScheduleNotificationState
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -1009,7 +1016,7 @@ class _$NotificationStateImpl implements _NotificationState {
 
   @override
   String toString() {
-    return 'CreateNotificationState(name: $name, startDate: $startDate, frequencyType: $frequencyType, frequencyAmount: $frequencyAmount)';
+    return 'CreateScheduleNotificationState(name: $name, startDate: $startDate, frequencyType: $frequencyType, frequencyAmount: $frequencyAmount)';
   }
 
   @override
@@ -1030,7 +1037,7 @@ class _$NotificationStateImpl implements _NotificationState {
   int get hashCode =>
       Object.hash(runtimeType, name, startDate, frequencyType, frequencyAmount);
 
-  /// Create a copy of CreateNotificationState
+  /// Create a copy of CreateScheduleNotificationState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
@@ -1040,7 +1047,7 @@ class _$NotificationStateImpl implements _NotificationState {
           this, _$identity);
 }
 
-abstract class _NotificationState implements CreateNotificationState {
+abstract class _NotificationState implements CreateScheduleNotificationState {
   factory _NotificationState(
       {final String name,
       required final DateTime startDate,
@@ -1056,7 +1063,7 @@ abstract class _NotificationState implements CreateNotificationState {
   @override
   int get frequencyAmount;
 
-  /// Create a copy of CreateNotificationState
+  /// Create a copy of CreateScheduleNotificationState
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)

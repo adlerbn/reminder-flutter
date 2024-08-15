@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:reminder/application/app.dart';
 import 'package:reminder/core/db/database.dart';
 import 'package:reminder/core/injection/injection.dart';
+import 'package:reminder/core/log/logger.dart';
 import 'package:reminder/core/services/notification_manager.dart';
 
 Future<void> main() async {
@@ -11,6 +12,7 @@ Future<void> main() async {
   await configureSystemUIOverlayStyle();
   await configureDependencies();
   await initializeDatabase();
+  await configureLogger();
 
   runApp(const App());
 }

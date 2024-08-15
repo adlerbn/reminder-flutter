@@ -20,8 +20,9 @@ class HomePage extends StatelessWidget {
 
   Widget _notificationPage(BuildContext context) {
     return ListTile(
-      onTap: () => Navigator.of(context).pushNamed('/notification-page'),
-      title: const Text("Notification"),
+      onTap: () =>
+          Navigator.of(context).pushNamed('/schedule-notification-page'),
+      title: const Text("Schedule Notification"),
       leading: const Icon(Icons.notifications),
       trailing: const Icon(Icons.chevron_right_rounded),
     );

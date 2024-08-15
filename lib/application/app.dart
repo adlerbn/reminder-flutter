@@ -3,11 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:reminder/core/injection/injection.dart';
 import 'package:reminder/core/services/notification_controller.dart';
-import 'package:reminder/pages/create_notification/bloc/create_notification_bloc.dart';
-import 'package:reminder/pages/create_notification/presentation/create_notification_page.dart';
 import 'package:reminder/pages/home/presentation/home_page.dart';
-import 'package:reminder/pages/notification/bloc/notification_bloc.dart';
-import 'package:reminder/pages/notification/presentation/notification_page.dart';
+import 'package:reminder/pages/schedule_notification/bloc/create/create_notification_bloc.dart';
+import 'package:reminder/pages/schedule_notification/bloc/manager/schedule_notification_bloc.dart';
+import 'package:reminder/pages/schedule_notification/presentation/create_schedule_notification_page.dart';
+import 'package:reminder/pages/schedule_notification/presentation/schedule_notification_page.dart';
 
 class App extends StatefulWidget {
   static final GlobalKey<NavigatorState> navigatorKey =
@@ -56,22 +56,22 @@ class _AppState extends State<App> {
           case '/':
             return MaterialPageRoute(builder: (context) => const HomePage());
 
-          case '/notification-page':
+          case '/schedule-notification-page':
             return MaterialPageRoute(builder: (context) {
               final receivedAction = settings.arguments as ReceivedAction?;
 
               return BlocProvider(
-                create: (context) =>
-                    locator<NotificationBloc>()..add(NotificationEvent.fetch()),
+                create: (context) => locator<ScheduleNotificationBloc>()
+                  ..add(ScheduleNotificationEvent.fetch()),
                 child: NotificationPage(receivedAction: receivedAction),
               );
             });
 
-          case '/notification-page/create-notification-page':
+          case '/schedule-notification-page/create-notification-page':
             return MaterialPageRoute(builder: (context) {
               return BlocProvider(
-                create: (context) => locator<CreateNotificationBloc>(),
-                child: const CreateNotificationPage(),
+                create: (context) => locator<CreateScheduleNotificationBloc>(),
+                child: CreateScheduleNotificationPage(),
               );
             });
 

@@ -8,6 +8,23 @@ enum FrequencyType {
 }
 
 extension FrequencyTypeExtension on FrequencyType {
+  String get title {
+    switch (this) {
+      case FrequencyType.none:
+        return '';
+      case FrequencyType.hourly:
+        return 'hour';
+      case FrequencyType.daily:
+        return 'day';
+      case FrequencyType.weekly:
+        return 'week';
+      case FrequencyType.monthly:
+        return 'month';
+      case FrequencyType.yearly:
+        return 'year';
+    }
+  }
+
   int toSeconds() {
     switch (this) {
       case FrequencyType.none:
