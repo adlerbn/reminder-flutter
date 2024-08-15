@@ -1,5 +1,4 @@
 import 'package:awesome_notifications/awesome_notifications.dart';
-import 'package:reminder/application/app.dart';
 import 'package:reminder/core/log/logger.dart';
 
 class NotificationController {
@@ -30,13 +29,12 @@ class NotificationController {
       ReceivedAction receivedAction) async {
     logger.i('onActionReceivedMethod');
 
+    final payload = receivedAction.payload ?? {};
+    if (payload['navigate'] == 'true') {}
     // Navigate into pages, avoiding to open the notification details page over another details page already opened
-    App.navigatorKey.currentState?.pushNamedAndRemoveUntil(
-      '/schedule-notification-page',
-      (route) =>
-          (route.settings.name != '/schedule-notification-page') ||
-          route.isFirst,
-      arguments: receivedAction,
-    );
+    // App.navigatorKey.currentState?.pushNamedIfNotCurrent(
+    //   destinationRoute,
+    //   arguments: receivedAction,
+    // );
   }
 }

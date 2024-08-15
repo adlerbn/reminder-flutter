@@ -12,13 +12,23 @@ class HomePage extends StatelessWidget {
       ),
       body: ListView(
         children: [
-          _notificationPage(context),
+          _simpleNotificationPage(context),
+          _scheduleNotificationPage(context),
         ],
       ),
     );
   }
 
-  Widget _notificationPage(BuildContext context) {
+  Widget _simpleNotificationPage(BuildContext context) {
+    return ListTile(
+      onTap: () => Navigator.of(context).pushNamed('/simple-notification-page'),
+      title: const Text("Simple Notification"),
+      leading: const Icon(Icons.notifications),
+      trailing: const Icon(Icons.chevron_right_rounded),
+    );
+  }
+
+  Widget _scheduleNotificationPage(BuildContext context) {
     return ListTile(
       onTap: () =>
           Navigator.of(context).pushNamed('/schedule-notification-page'),

@@ -7,10 +7,10 @@ import 'package:reminder/pages/schedule_notification/bloc/manager/schedule_notif
 import 'package:reminder/pages/schedule_notification/widgets/schedule_notification_item.dart';
 import 'package:visibility_detector/visibility_detector.dart';
 
-class NotificationPage extends StatelessWidget {
+class ScheduleNotificationPage extends StatelessWidget {
   final ReceivedAction? receivedAction;
 
-  const NotificationPage({
+  const ScheduleNotificationPage({
     super.key,
     this.receivedAction,
   });

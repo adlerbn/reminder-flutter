@@ -16,6 +16,8 @@ import 'package:reminder/pages/schedule_notification/bloc/create/create_notifica
     as _i579;
 import 'package:reminder/pages/schedule_notification/bloc/manager/schedule_notification_bloc.dart'
     as _i673;
+import 'package:reminder/pages/simple_notification/bloc/simple_notification_bloc.dart'
+    as _i196;
 
 extension GetItInjectableX on _i174.GetIt {
 // initializes the registration of main-scope dependencies inside of GetIt
@@ -35,6 +37,10 @@ extension GetItInjectableX on _i174.GetIt {
               gh<_i917.NotificationService>(),
               gh<_i56.NotificationManager>(),
             ));
+    gh.factory<_i196.SimpleNotificationBloc>(() => _i196.SimpleNotificationBloc(
+          gh<_i56.NotificationManager>(),
+          gh<_i917.NotificationService>(),
+        ));
     gh.factory<_i673.ScheduleNotificationBloc>(
         () => _i673.ScheduleNotificationBloc(
               gh<_i56.NotificationManager>(),
