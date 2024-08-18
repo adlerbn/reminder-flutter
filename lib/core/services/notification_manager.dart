@@ -13,11 +13,23 @@ class NotificationManager {
       null,
       [
         NotificationChannel(
-          channelGroupKey: channelGroupKey,
-          channelKey: channelKey,
-          channelName: 'Reminder Channel',
+          channelGroupKey: 'reminder_tests',
+          channelKey: 'reminder',
+          channelName: 'Reminder notifications',
           channelDescription: 'Reminders',
           defaultColor: Colors.redAccent,
+          ledColor: Colors.white,
+          playSound: true,
+          importance: NotificationImportance.Max,
+          onlyAlertOnce: true,
+          criticalAlerts: true,
+        ),
+        NotificationChannel(
+          channelGroupKey: 'schedule_tests',
+          channelKey: 'scheduled',
+          channelName: 'Scheduled notifications',
+          channelDescription: 'Notifications with schedule functionality',
+          defaultColor: Colors.blueAccent,
           ledColor: Colors.white,
           playSound: true,
           importance: NotificationImportance.Max,
@@ -28,17 +40,21 @@ class NotificationManager {
       // Channel groups are only visual and are not required
       channelGroups: [
         NotificationChannelGroup(
-          channelGroupKey: channelGroupKey,
-          channelGroupName: 'Reminder group',
+          channelGroupKey: 'reminder_tests',
+          channelGroupName: 'Reminder tests',
+        ),
+        NotificationChannelGroup(
+          channelGroupKey: 'schedule_tests',
+          channelGroupName: 'Schedule tests',
         ),
       ],
       debug: true,
     );
 
-    await _setNotificationListeners();
+    await initializeNotificationsEventListeners();
   }
 
-  static Future<void> _setNotificationListeners() async {
+  static Future<void> initializeNotificationsEventListeners() async {
     AwesomeNotifications().setListeners(
       onActionReceivedMethod: NotificationController.onActionReceivedMethod,
       onNotificationCreatedMethod:
@@ -63,27 +79,26 @@ class NotificationManager {
     });
   }
 
-  Future<void> create({
+  Future<void> showSchedule({
     required int id,
     required int interval,
     Map<String, String>? payload,
   }) async {
+    final localTimeZone =
+        await AwesomeNotifications().getLocalTimeZoneIdentifier();
+
     await AwesomeNotifications().createNotification(
       content: NotificationContent(
         id: id,
-        channelKey: channelKey,
-        groupKey: channelGroupKey,
-        actionType: ActionType.Default,
-        title: 'Hello World!',
-        body: 'This is my first notification!',
-        criticalAlert: true,
-        category: NotificationCategory.Reminder,
-        payload: payload,
+        channelKey: 'scheduled',
+        title: 'Notification every single minute',
+        body: 'This notification was scheduled to repeat every minute.',
       ),
       schedule: NotificationInterval(
         interval: interval,
         allowWhileIdle: true,
         repeats: true,
+        timeZone: localTimeZone,
       ),
     );
   }
@@ -94,8 +109,7 @@ class NotificationManager {
     Map<String, String>? payload,
     ActionType actionType = ActionType.Default,
     List<NotificationActionButton>? actionButtons,
-    bool schedule = false,
-    int? interval,
+    DateTime? scheduleDate,
   }) async {
     await AwesomeNotifications().createNotification(
       content: NotificationContent(
@@ -108,13 +122,27 @@ class NotificationManager {
         criticalAlert: true,
         category: NotificationCategory.Reminder,
         payload: payload,
+        wakeUpScreen: true,
+        locked: true,
+        fullScreenIntent: true,
       ),
       actionButtons: actionButtons,
+      schedule: scheduleDate != null
+          ? NotificationCalendar.fromDate(
+              date: scheduleDate,
+              preciseAlarm: true,
+              allowWhileIdle: true,
+            )
+          : null,
     );
   }
 
   Future<void> cancel(int id) async {
     await AwesomeNotifications().cancel(id);
+  }
+
+  Future<void> cancelSchedule(int id) async {
+    await AwesomeNotifications().cancelSchedule(id);
   }
 
   Future<void> cancelAll() async {

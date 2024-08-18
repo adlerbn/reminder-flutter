@@ -73,7 +73,7 @@ class CreateScheduleNotificationBloc extends Bloc<
     final id = await service.insert(notification);
 
     await manager
-        .create(
+        .showSchedule(
       id: id,
       interval: interval,
     )

@@ -31,10 +31,5 @@ class NotificationController {
 
     final payload = receivedAction.payload ?? {};
     if (payload['navigate'] == 'true') {}
-    // Navigate into pages, avoiding to open the notification details page over another details page already opened
-    // App.navigatorKey.currentState?.pushNamedIfNotCurrent(
-    //   destinationRoute,
-    //   arguments: receivedAction,
-    // );
   }
 }

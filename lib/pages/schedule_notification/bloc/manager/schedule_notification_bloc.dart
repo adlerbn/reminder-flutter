@@ -53,7 +53,7 @@ class ScheduleNotificationBloc
     if (id == null) return;
     await service.delete(id).then(
       (_) async {
-        await manager.cancel(id);
+        await manager.cancelSchedule(id);
 
         logger.i('Schedule notification deleted');
 
