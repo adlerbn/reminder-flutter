@@ -10,7 +10,8 @@ _$NotificationEntityModelImpl _$$NotificationEntityModelImplFromJson(
         Map<String, dynamic> json) =>
     _$NotificationEntityModelImpl(
       id: (json['id'] as num?)?.toInt(),
-      name: json['name'] as String,
+      title: json['title'] as String,
+      body: json['body'] as String?,
       startDate: DateTime.parse(json['startDate'] as String),
       frequencyType: $enumDecode(_$FrequencyTypeEnumMap, json['frequencyType']),
       frequencyAmount: (json['frequencyAmount'] as num).toInt(),
@@ -20,7 +21,8 @@ Map<String, dynamic> _$$NotificationEntityModelImplToJson(
         _$NotificationEntityModelImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
-      'name': instance.name,
+      'title': instance.title,
+      'body': instance.body,
       'startDate': instance.startDate.toIso8601String(),
       'frequencyType': _$FrequencyTypeEnumMap[instance.frequencyType]!,
       'frequencyAmount': instance.frequencyAmount,
@@ -28,6 +30,7 @@ Map<String, dynamic> _$$NotificationEntityModelImplToJson(
 
 const _$FrequencyTypeEnumMap = {
   FrequencyType.none: 'none',
+  FrequencyType.minutely: 'minutely',
   FrequencyType.hourly: 'hourly',
   FrequencyType.daily: 'daily',
   FrequencyType.weekly: 'weekly',

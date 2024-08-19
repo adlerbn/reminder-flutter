@@ -29,7 +29,9 @@ class CreateScheduleNotificationPage extends StatelessWidget {
             child: ListView(
               padding: const EdgeInsets.symmetric(horizontal: 16),
               children: [
-                _nameField(context),
+                _titleField(context),
+                const SizedBox(height: 16),
+                _bodyField(context),
                 const SizedBox(height: 16),
                 Row(
                   children: [
@@ -58,16 +60,16 @@ class CreateScheduleNotificationPage extends StatelessWidget {
     );
   }
 
-  Widget _nameField(BuildContext context) {
+  Widget _titleField(BuildContext context) {
     final bloc = context.read<CreateScheduleNotificationBloc>();
-    final initialValue = bloc.state.name;
+    final initialValue = bloc.state.title;
 
     return TextFormField(
-      initialValue: initialValue.toString(),
+      initialValue: initialValue,
       keyboardType: TextInputType.text,
-      decoration: const InputDecoration(labelText: "Name"),
+      decoration: const InputDecoration(labelText: "Title"),
       onChanged: (value) =>
-          bloc.add(CreateScheduleNotificationEvent.changeName(name: value)),
+          bloc.add(CreateScheduleNotificationEvent.changeTitle(title: value)),
       validator: (value) {
         if (value == null) return null;
 
@@ -77,6 +79,22 @@ class CreateScheduleNotificationPage extends StatelessWidget {
 
         return null;
       },
+    );
+  }
+
+  Widget _bodyField(BuildContext context) {
+    final bloc = context.read<CreateScheduleNotificationBloc>();
+    final initialValue = bloc.state.title;
+
+    return TextFormField(
+      initialValue: initialValue,
+      keyboardType: TextInputType.text,
+      decoration: const InputDecoration(
+        labelText: "Body",
+        helperText: "(Optional)",
+      ),
+      onChanged: (value) =>
+          bloc.add(CreateScheduleNotificationEvent.changeBody(body: value)),
     );
   }
 
@@ -95,7 +113,10 @@ class CreateScheduleNotificationPage extends StatelessWidget {
         onTap: () async {
           final time = await showTimePicker(
             context: context,
-            initialTime: TimeOfDay.now(),
+            initialTime: TimeOfDay(
+              hour: startDate.hour,
+              minute: startDate.minute,
+            ),
           );
 
           bloc.add(CreateScheduleNotificationEvent.changeStartDate(
@@ -150,15 +171,15 @@ class CreateScheduleNotificationPage extends StatelessWidget {
             ))
         .toList();
     final value = bloc.state.frequencyType;
-    final isNotSelected = value == FrequencyType.none;
+    final isSelected = value != FrequencyType.none;
 
     return Expanded(
       child: DropdownButtonFormField(
-        value: value != FrequencyType.none ? value : null,
+        value: isSelected ? value : null,
         decoration: const InputDecoration(labelText: "Frequency"),
         items: items,
         onChanged: (value) => bloc.add(
-            CreateScheduleNotificationEvent.changeType(
+            CreateScheduleNotificationEvent.changeFrequencyType(
                 frequencyType: value ?? FrequencyType.none)),
         validator: (value) {
           if (value == null) return null;
@@ -183,7 +204,7 @@ class CreateScheduleNotificationPage extends StatelessWidget {
         inputFormatters: [FilteringTextInputFormatter.digitsOnly],
         decoration: const InputDecoration(labelText: "Frequency amount"),
         onChanged: (value) => bloc.add(
-            CreateScheduleNotificationEvent.changeAmount(
+            CreateScheduleNotificationEvent.changeFrequencyAmount(
                 frequencyAmount: int.tryParse(value) ?? 1)),
         keyboardType: TextInputType.number,
       ),

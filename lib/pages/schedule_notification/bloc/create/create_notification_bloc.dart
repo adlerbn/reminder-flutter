@@ -23,18 +23,26 @@ class CreateScheduleNotificationBloc extends Bloc<
     this.service,
     this.manager,
   ) : super(CreateScheduleNotificationState.init()) {
-    on<ChangeName>(_changeNameEvent);
+    on<ChangeTitle>(_changeTitleEvent);
+    on<ChangeBody>(_changeBodyEvent);
     on<ChangeStartDate>(_changeStartDateEvent);
     on<ChangeFrequencyType>(_changeFrequencyTypeEvent);
     on<ChangeFrequencyAmount>(_changeFrequencyAmountEvent);
     on<SaveNotification>(_saveEvent);
   }
 
-  FutureOr _changeNameEvent(
-    ChangeName event,
+  FutureOr _changeTitleEvent(
+    ChangeTitle event,
     Emitter<CreateScheduleNotificationState> emit,
   ) async {
-    emit(state.copyWith(name: event.name));
+    emit(state.copyWith(title: event.title));
+  }
+
+  FutureOr _changeBodyEvent(
+    ChangeBody event,
+    Emitter<CreateScheduleNotificationState> emit,
+  ) async {
+    emit(state.copyWith(body: event.body));
   }
 
   FutureOr _changeStartDateEvent(
@@ -62,20 +70,24 @@ class CreateScheduleNotificationBloc extends Bloc<
     SaveNotification event,
     Emitter<CreateScheduleNotificationState> emit,
   ) async {
-    final interval = state.frequencyAmount * state.frequencyType.toSeconds();
     final notification = NotificationEntityModel(
-      name: state.name,
+      title: state.title,
+      body: state.body,
       startDate: state.startDate,
       frequencyType: state.frequencyType,
       frequencyAmount: state.frequencyAmount,
     );
 
     final id = await service.insert(notification);
+    final payload = notification.copyWith(id: id).toMap();
 
     await manager
         .showSchedule(
       id: id,
-      interval: interval,
+      title: state.title,
+      body: state.body,
+      date: state.startDate,
+      payload: payload,
     )
         .then(
       (_) {

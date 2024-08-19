@@ -1,5 +1,6 @@
 enum FrequencyType {
   none,
+  minutely,
   hourly,
   daily,
   weekly,
@@ -7,21 +8,37 @@ enum FrequencyType {
   yearly;
 }
 
+extension FrequencyTypeMapper on FrequencyType {
+  static FrequencyType mapFromString(String? value) {
+    if (value == null) return FrequencyType.none;
+
+    try {
+      final result = FrequencyType.values.firstWhere((e) => e.name == value);
+
+      return result;
+    } catch (_) {
+      return FrequencyType.none;
+    }
+  }
+}
+
 extension FrequencyTypeExtension on FrequencyType {
   String get title {
     switch (this) {
       case FrequencyType.none:
         return '';
+      case FrequencyType.minutely:
+        return 'minutes';
       case FrequencyType.hourly:
-        return 'hour';
+        return 'hours';
       case FrequencyType.daily:
-        return 'day';
+        return 'days';
       case FrequencyType.weekly:
-        return 'week';
+        return 'weeks';
       case FrequencyType.monthly:
-        return 'month';
+        return 'months';
       case FrequencyType.yearly:
-        return 'year';
+        return 'years';
     }
   }
 
@@ -29,6 +46,8 @@ extension FrequencyTypeExtension on FrequencyType {
     switch (this) {
       case FrequencyType.none:
         return 0;
+      case FrequencyType.minutely:
+        return Duration.secondsPerMinute;
       case FrequencyType.hourly:
         return Duration.secondsPerHour;
       case FrequencyType.daily:

@@ -17,7 +17,8 @@ Future<void> initializeDatabase() async {
         '''
         CREATE TABLE notifications(
         id INTEGER PRIMARY KEY,
-        name TEXT,
+        title TEXT,
+        body TEXT,
         startDate TEXT,
         frequencyType TEXT,
         frequencyAmount INTEGER

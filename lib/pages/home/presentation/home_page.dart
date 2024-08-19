@@ -33,7 +33,7 @@ class HomePage extends StatelessWidget {
       onTap: () =>
           Navigator.of(context).pushNamed('/schedule-notification-page'),
       title: const Text("Schedule Notification"),
-      leading: const Icon(Icons.notifications),
+      leading: const Icon(Icons.access_time_filled),
       trailing: const Icon(Icons.chevron_right_rounded),
     );
   }

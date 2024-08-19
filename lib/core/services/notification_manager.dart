@@ -3,9 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:injectable/injectable.dart';
 import 'package:reminder/core/services/notification_controller.dart';
 
-const channelGroupKey = 'reminder_channel_group';
-const channelKey = 'reminder_channel';
-
 @injectable
 class NotificationManager {
   static Future<void> initialize() async {
@@ -19,10 +16,11 @@ class NotificationManager {
           channelDescription: 'Reminders',
           defaultColor: Colors.redAccent,
           ledColor: Colors.white,
-          playSound: true,
           importance: NotificationImportance.Max,
+          playSound: true,
           onlyAlertOnce: true,
           criticalAlerts: true,
+          locked: true,
         ),
         NotificationChannel(
           channelGroupKey: 'schedule_tests',
@@ -31,10 +29,11 @@ class NotificationManager {
           channelDescription: 'Notifications with schedule functionality',
           defaultColor: Colors.blueAccent,
           ledColor: Colors.white,
-          playSound: true,
           importance: NotificationImportance.Max,
+          playSound: true,
           onlyAlertOnce: true,
           criticalAlerts: true,
+          locked: true,
         ),
       ],
       // Channel groups are only visual and are not required
@@ -81,24 +80,25 @@ class NotificationManager {
 
   Future<void> showSchedule({
     required int id,
-    required int interval,
-    Map<String, String>? payload,
+    required String title,
+    String? body,
+    required DateTime date,
+    Map<String, String?>? payload,
   }) async {
-    final localTimeZone =
-        await AwesomeNotifications().getLocalTimeZoneIdentifier();
-
     await AwesomeNotifications().createNotification(
       content: NotificationContent(
         id: id,
+        groupKey: 'schedule_tests',
         channelKey: 'scheduled',
-        title: 'Notification every single minute',
-        body: 'This notification was scheduled to repeat every minute.',
+        title: title,
+        body: body,
+        payload: payload,
+        wakeUpScreen: true,
+        fullScreenIntent: true,
       ),
-      schedule: NotificationInterval(
-        interval: interval,
+      schedule: NotificationCalendar.fromDate(
+        date: date,
         allowWhileIdle: true,
-        repeats: true,
-        timeZone: localTimeZone,
       ),
     );
   }
@@ -114,16 +114,14 @@ class NotificationManager {
     await AwesomeNotifications().createNotification(
       content: NotificationContent(
         id: -1,
-        channelKey: channelKey,
-        groupKey: channelGroupKey,
+        groupKey: 'reminder_tests',
+        channelKey: 'reminder',
         actionType: actionType,
         title: title,
         body: body,
-        criticalAlert: true,
         category: NotificationCategory.Reminder,
         payload: payload,
         wakeUpScreen: true,
-        locked: true,
         fullScreenIntent: true,
       ),
       actionButtons: actionButtons,

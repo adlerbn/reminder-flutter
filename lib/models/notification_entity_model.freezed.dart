@@ -22,7 +22,8 @@ NotificationEntityModel _$NotificationEntityModelFromJson(
 /// @nodoc
 mixin _$NotificationEntityModel {
   int? get id => throw _privateConstructorUsedError;
-  String get name => throw _privateConstructorUsedError;
+  String get title => throw _privateConstructorUsedError;
+  String? get body => throw _privateConstructorUsedError;
   DateTime get startDate => throw _privateConstructorUsedError;
   FrequencyType get frequencyType => throw _privateConstructorUsedError;
   int get frequencyAmount => throw _privateConstructorUsedError;
@@ -45,7 +46,8 @@ abstract class $NotificationEntityModelCopyWith<$Res> {
   @useResult
   $Res call(
       {int? id,
-      String name,
+      String title,
+      String? body,
       DateTime startDate,
       FrequencyType frequencyType,
       int frequencyAmount});
@@ -68,7 +70,8 @@ class _$NotificationEntityModelCopyWithImpl<$Res,
   @override
   $Res call({
     Object? id = freezed,
-    Object? name = null,
+    Object? title = null,
+    Object? body = freezed,
     Object? startDate = null,
     Object? frequencyType = null,
     Object? frequencyAmount = null,
@@ -78,10 +81,14 @@ class _$NotificationEntityModelCopyWithImpl<$Res,
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int?,
-      name: null == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
+      title: null == title
+          ? _value.title
+          : title // ignore: cast_nullable_to_non_nullable
               as String,
+      body: freezed == body
+          ? _value.body
+          : body // ignore: cast_nullable_to_non_nullable
+              as String?,
       startDate: null == startDate
           ? _value.startDate
           : startDate // ignore: cast_nullable_to_non_nullable
@@ -109,7 +116,8 @@ abstract class _$$NotificationEntityModelImplCopyWith<$Res>
   @useResult
   $Res call(
       {int? id,
-      String name,
+      String title,
+      String? body,
       DateTime startDate,
       FrequencyType frequencyType,
       int frequencyAmount});
@@ -131,7 +139,8 @@ class __$$NotificationEntityModelImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = freezed,
-    Object? name = null,
+    Object? title = null,
+    Object? body = freezed,
     Object? startDate = null,
     Object? frequencyType = null,
     Object? frequencyAmount = null,
@@ -141,10 +150,14 @@ class __$$NotificationEntityModelImplCopyWithImpl<$Res>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int?,
-      name: null == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
+      title: null == title
+          ? _value.title
+          : title // ignore: cast_nullable_to_non_nullable
               as String,
+      body: freezed == body
+          ? _value.body
+          : body // ignore: cast_nullable_to_non_nullable
+              as String?,
       startDate: null == startDate
           ? _value.startDate
           : startDate // ignore: cast_nullable_to_non_nullable
@@ -166,7 +179,8 @@ class __$$NotificationEntityModelImplCopyWithImpl<$Res>
 class _$NotificationEntityModelImpl implements _NotificationEntityModel {
   _$NotificationEntityModelImpl(
       {this.id,
-      required this.name,
+      required this.title,
+      this.body,
       required this.startDate,
       required this.frequencyType,
       required this.frequencyAmount});
@@ -177,7 +191,9 @@ class _$NotificationEntityModelImpl implements _NotificationEntityModel {
   @override
   final int? id;
   @override
-  final String name;
+  final String title;
+  @override
+  final String? body;
   @override
   final DateTime startDate;
   @override
@@ -187,7 +203,7 @@ class _$NotificationEntityModelImpl implements _NotificationEntityModel {
 
   @override
   String toString() {
-    return 'NotificationEntityModel(id: $id, name: $name, startDate: $startDate, frequencyType: $frequencyType, frequencyAmount: $frequencyAmount)';
+    return 'NotificationEntityModel(id: $id, title: $title, body: $body, startDate: $startDate, frequencyType: $frequencyType, frequencyAmount: $frequencyAmount)';
   }
 
   @override
@@ -196,7 +212,8 @@ class _$NotificationEntityModelImpl implements _NotificationEntityModel {
         (other.runtimeType == runtimeType &&
             other is _$NotificationEntityModelImpl &&
             (identical(other.id, id) || other.id == id) &&
-            (identical(other.name, name) || other.name == name) &&
+            (identical(other.title, title) || other.title == title) &&
+            (identical(other.body, body) || other.body == body) &&
             (identical(other.startDate, startDate) ||
                 other.startDate == startDate) &&
             (identical(other.frequencyType, frequencyType) ||
@@ -208,7 +225,7 @@ class _$NotificationEntityModelImpl implements _NotificationEntityModel {
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
-      runtimeType, id, name, startDate, frequencyType, frequencyAmount);
+      runtimeType, id, title, body, startDate, frequencyType, frequencyAmount);
 
   /// Create a copy of NotificationEntityModel
   /// with the given fields replaced by the non-null parameter values.
@@ -230,7 +247,8 @@ class _$NotificationEntityModelImpl implements _NotificationEntityModel {
 abstract class _NotificationEntityModel implements NotificationEntityModel {
   factory _NotificationEntityModel(
       {final int? id,
-      required final String name,
+      required final String title,
+      final String? body,
       required final DateTime startDate,
       required final FrequencyType frequencyType,
       required final int frequencyAmount}) = _$NotificationEntityModelImpl;
@@ -241,7 +259,9 @@ abstract class _NotificationEntityModel implements NotificationEntityModel {
   @override
   int? get id;
   @override
-  String get name;
+  String get title;
+  @override
+  String? get body;
   @override
   DateTime get startDate;
   @override

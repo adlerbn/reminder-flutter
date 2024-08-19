@@ -18,56 +18,63 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$CreateScheduleNotificationEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String name) changeName,
+    required TResult Function(String title) changeTitle,
+    required TResult Function(String body) changeBody,
     required TResult Function(DateTime startDate) changeStartDate,
-    required TResult Function(FrequencyType frequencyType) changeType,
-    required TResult Function(int frequencyAmount) changeAmount,
+    required TResult Function(FrequencyType frequencyType) changeFrequencyType,
+    required TResult Function(int frequencyAmount) changeFrequencyAmount,
     required TResult Function() save,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String name)? changeName,
+    TResult? Function(String title)? changeTitle,
+    TResult? Function(String body)? changeBody,
     TResult? Function(DateTime startDate)? changeStartDate,
-    TResult? Function(FrequencyType frequencyType)? changeType,
-    TResult? Function(int frequencyAmount)? changeAmount,
+    TResult? Function(FrequencyType frequencyType)? changeFrequencyType,
+    TResult? Function(int frequencyAmount)? changeFrequencyAmount,
     TResult? Function()? save,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String name)? changeName,
+    TResult Function(String title)? changeTitle,
+    TResult Function(String body)? changeBody,
     TResult Function(DateTime startDate)? changeStartDate,
-    TResult Function(FrequencyType frequencyType)? changeType,
-    TResult Function(int frequencyAmount)? changeAmount,
+    TResult Function(FrequencyType frequencyType)? changeFrequencyType,
+    TResult Function(int frequencyAmount)? changeFrequencyAmount,
     TResult Function()? save,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(ChangeName value) changeName,
+    required TResult Function(ChangeTitle value) changeTitle,
+    required TResult Function(ChangeBody value) changeBody,
     required TResult Function(ChangeStartDate value) changeStartDate,
-    required TResult Function(ChangeFrequencyType value) changeType,
-    required TResult Function(ChangeFrequencyAmount value) changeAmount,
+    required TResult Function(ChangeFrequencyType value) changeFrequencyType,
+    required TResult Function(ChangeFrequencyAmount value)
+        changeFrequencyAmount,
     required TResult Function(SaveNotification value) save,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(ChangeName value)? changeName,
+    TResult? Function(ChangeTitle value)? changeTitle,
+    TResult? Function(ChangeBody value)? changeBody,
     TResult? Function(ChangeStartDate value)? changeStartDate,
-    TResult? Function(ChangeFrequencyType value)? changeType,
-    TResult? Function(ChangeFrequencyAmount value)? changeAmount,
+    TResult? Function(ChangeFrequencyType value)? changeFrequencyType,
+    TResult? Function(ChangeFrequencyAmount value)? changeFrequencyAmount,
     TResult? Function(SaveNotification value)? save,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(ChangeName value)? changeName,
+    TResult Function(ChangeTitle value)? changeTitle,
+    TResult Function(ChangeBody value)? changeBody,
     TResult Function(ChangeStartDate value)? changeStartDate,
-    TResult Function(ChangeFrequencyType value)? changeType,
-    TResult Function(ChangeFrequencyAmount value)? changeAmount,
+    TResult Function(ChangeFrequencyType value)? changeFrequencyType,
+    TResult Function(ChangeFrequencyAmount value)? changeFrequencyAmount,
     TResult Function(SaveNotification value)? save,
     required TResult orElse(),
   }) =>
@@ -99,20 +106,20 @@ class _$CreateScheduleNotificationEventCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$ChangeNameImplCopyWith<$Res> {
-  factory _$$ChangeNameImplCopyWith(
-          _$ChangeNameImpl value, $Res Function(_$ChangeNameImpl) then) =
-      __$$ChangeNameImplCopyWithImpl<$Res>;
+abstract class _$$ChangeTitleImplCopyWith<$Res> {
+  factory _$$ChangeTitleImplCopyWith(
+          _$ChangeTitleImpl value, $Res Function(_$ChangeTitleImpl) then) =
+      __$$ChangeTitleImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({String name});
+  $Res call({String title});
 }
 
 /// @nodoc
-class __$$ChangeNameImplCopyWithImpl<$Res>
+class __$$ChangeTitleImplCopyWithImpl<$Res>
     extends _$CreateScheduleNotificationEventCopyWithImpl<$Res,
-        _$ChangeNameImpl> implements _$$ChangeNameImplCopyWith<$Res> {
-  __$$ChangeNameImplCopyWithImpl(
-      _$ChangeNameImpl _value, $Res Function(_$ChangeNameImpl) _then)
+        _$ChangeTitleImpl> implements _$$ChangeTitleImplCopyWith<$Res> {
+  __$$ChangeTitleImplCopyWithImpl(
+      _$ChangeTitleImpl _value, $Res Function(_$ChangeTitleImpl) _then)
       : super(_value, _then);
 
   /// Create a copy of CreateScheduleNotificationEvent
@@ -120,12 +127,12 @@ class __$$ChangeNameImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? name = null,
+    Object? title = null,
   }) {
-    return _then(_$ChangeNameImpl(
-      name: null == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
+    return _then(_$ChangeTitleImpl(
+      title: null == title
+          ? _value.title
+          : title // ignore: cast_nullable_to_non_nullable
               as String,
     ));
   }
@@ -133,72 +140,75 @@ class __$$ChangeNameImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$ChangeNameImpl implements ChangeName {
-  _$ChangeNameImpl({required this.name});
+class _$ChangeTitleImpl implements ChangeTitle {
+  _$ChangeTitleImpl({required this.title});
 
   @override
-  final String name;
+  final String title;
 
   @override
   String toString() {
-    return 'CreateScheduleNotificationEvent.changeName(name: $name)';
+    return 'CreateScheduleNotificationEvent.changeTitle(title: $title)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$ChangeNameImpl &&
-            (identical(other.name, name) || other.name == name));
+            other is _$ChangeTitleImpl &&
+            (identical(other.title, title) || other.title == title));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, name);
+  int get hashCode => Object.hash(runtimeType, title);
 
   /// Create a copy of CreateScheduleNotificationEvent
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$ChangeNameImplCopyWith<_$ChangeNameImpl> get copyWith =>
-      __$$ChangeNameImplCopyWithImpl<_$ChangeNameImpl>(this, _$identity);
+  _$$ChangeTitleImplCopyWith<_$ChangeTitleImpl> get copyWith =>
+      __$$ChangeTitleImplCopyWithImpl<_$ChangeTitleImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String name) changeName,
+    required TResult Function(String title) changeTitle,
+    required TResult Function(String body) changeBody,
     required TResult Function(DateTime startDate) changeStartDate,
-    required TResult Function(FrequencyType frequencyType) changeType,
-    required TResult Function(int frequencyAmount) changeAmount,
+    required TResult Function(FrequencyType frequencyType) changeFrequencyType,
+    required TResult Function(int frequencyAmount) changeFrequencyAmount,
     required TResult Function() save,
   }) {
-    return changeName(name);
+    return changeTitle(title);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String name)? changeName,
+    TResult? Function(String title)? changeTitle,
+    TResult? Function(String body)? changeBody,
     TResult? Function(DateTime startDate)? changeStartDate,
-    TResult? Function(FrequencyType frequencyType)? changeType,
-    TResult? Function(int frequencyAmount)? changeAmount,
+    TResult? Function(FrequencyType frequencyType)? changeFrequencyType,
+    TResult? Function(int frequencyAmount)? changeFrequencyAmount,
     TResult? Function()? save,
   }) {
-    return changeName?.call(name);
+    return changeTitle?.call(title);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String name)? changeName,
+    TResult Function(String title)? changeTitle,
+    TResult Function(String body)? changeBody,
     TResult Function(DateTime startDate)? changeStartDate,
-    TResult Function(FrequencyType frequencyType)? changeType,
-    TResult Function(int frequencyAmount)? changeAmount,
+    TResult Function(FrequencyType frequencyType)? changeFrequencyType,
+    TResult Function(int frequencyAmount)? changeFrequencyAmount,
     TResult Function()? save,
     required TResult orElse(),
   }) {
-    if (changeName != null) {
-      return changeName(name);
+    if (changeTitle != null) {
+      return changeTitle(title);
     }
     return orElse();
   }
@@ -206,53 +216,222 @@ class _$ChangeNameImpl implements ChangeName {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(ChangeName value) changeName,
+    required TResult Function(ChangeTitle value) changeTitle,
+    required TResult Function(ChangeBody value) changeBody,
     required TResult Function(ChangeStartDate value) changeStartDate,
-    required TResult Function(ChangeFrequencyType value) changeType,
-    required TResult Function(ChangeFrequencyAmount value) changeAmount,
+    required TResult Function(ChangeFrequencyType value) changeFrequencyType,
+    required TResult Function(ChangeFrequencyAmount value)
+        changeFrequencyAmount,
     required TResult Function(SaveNotification value) save,
   }) {
-    return changeName(this);
+    return changeTitle(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(ChangeName value)? changeName,
+    TResult? Function(ChangeTitle value)? changeTitle,
+    TResult? Function(ChangeBody value)? changeBody,
     TResult? Function(ChangeStartDate value)? changeStartDate,
-    TResult? Function(ChangeFrequencyType value)? changeType,
-    TResult? Function(ChangeFrequencyAmount value)? changeAmount,
+    TResult? Function(ChangeFrequencyType value)? changeFrequencyType,
+    TResult? Function(ChangeFrequencyAmount value)? changeFrequencyAmount,
     TResult? Function(SaveNotification value)? save,
   }) {
-    return changeName?.call(this);
+    return changeTitle?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(ChangeName value)? changeName,
+    TResult Function(ChangeTitle value)? changeTitle,
+    TResult Function(ChangeBody value)? changeBody,
     TResult Function(ChangeStartDate value)? changeStartDate,
-    TResult Function(ChangeFrequencyType value)? changeType,
-    TResult Function(ChangeFrequencyAmount value)? changeAmount,
+    TResult Function(ChangeFrequencyType value)? changeFrequencyType,
+    TResult Function(ChangeFrequencyAmount value)? changeFrequencyAmount,
     TResult Function(SaveNotification value)? save,
     required TResult orElse(),
   }) {
-    if (changeName != null) {
-      return changeName(this);
+    if (changeTitle != null) {
+      return changeTitle(this);
     }
     return orElse();
   }
 }
 
-abstract class ChangeName implements CreateScheduleNotificationEvent {
-  factory ChangeName({required final String name}) = _$ChangeNameImpl;
+abstract class ChangeTitle implements CreateScheduleNotificationEvent {
+  factory ChangeTitle({required final String title}) = _$ChangeTitleImpl;
 
-  String get name;
+  String get title;
 
   /// Create a copy of CreateScheduleNotificationEvent
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$ChangeNameImplCopyWith<_$ChangeNameImpl> get copyWith =>
+  _$$ChangeTitleImplCopyWith<_$ChangeTitleImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$ChangeBodyImplCopyWith<$Res> {
+  factory _$$ChangeBodyImplCopyWith(
+          _$ChangeBodyImpl value, $Res Function(_$ChangeBodyImpl) then) =
+      __$$ChangeBodyImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String body});
+}
+
+/// @nodoc
+class __$$ChangeBodyImplCopyWithImpl<$Res>
+    extends _$CreateScheduleNotificationEventCopyWithImpl<$Res,
+        _$ChangeBodyImpl> implements _$$ChangeBodyImplCopyWith<$Res> {
+  __$$ChangeBodyImplCopyWithImpl(
+      _$ChangeBodyImpl _value, $Res Function(_$ChangeBodyImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of CreateScheduleNotificationEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? body = null,
+  }) {
+    return _then(_$ChangeBodyImpl(
+      body: null == body
+          ? _value.body
+          : body // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$ChangeBodyImpl implements ChangeBody {
+  _$ChangeBodyImpl({required this.body});
+
+  @override
+  final String body;
+
+  @override
+  String toString() {
+    return 'CreateScheduleNotificationEvent.changeBody(body: $body)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ChangeBodyImpl &&
+            (identical(other.body, body) || other.body == body));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, body);
+
+  /// Create a copy of CreateScheduleNotificationEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ChangeBodyImplCopyWith<_$ChangeBodyImpl> get copyWith =>
+      __$$ChangeBodyImplCopyWithImpl<_$ChangeBodyImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String title) changeTitle,
+    required TResult Function(String body) changeBody,
+    required TResult Function(DateTime startDate) changeStartDate,
+    required TResult Function(FrequencyType frequencyType) changeFrequencyType,
+    required TResult Function(int frequencyAmount) changeFrequencyAmount,
+    required TResult Function() save,
+  }) {
+    return changeBody(body);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String title)? changeTitle,
+    TResult? Function(String body)? changeBody,
+    TResult? Function(DateTime startDate)? changeStartDate,
+    TResult? Function(FrequencyType frequencyType)? changeFrequencyType,
+    TResult? Function(int frequencyAmount)? changeFrequencyAmount,
+    TResult? Function()? save,
+  }) {
+    return changeBody?.call(body);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String title)? changeTitle,
+    TResult Function(String body)? changeBody,
+    TResult Function(DateTime startDate)? changeStartDate,
+    TResult Function(FrequencyType frequencyType)? changeFrequencyType,
+    TResult Function(int frequencyAmount)? changeFrequencyAmount,
+    TResult Function()? save,
+    required TResult orElse(),
+  }) {
+    if (changeBody != null) {
+      return changeBody(body);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(ChangeTitle value) changeTitle,
+    required TResult Function(ChangeBody value) changeBody,
+    required TResult Function(ChangeStartDate value) changeStartDate,
+    required TResult Function(ChangeFrequencyType value) changeFrequencyType,
+    required TResult Function(ChangeFrequencyAmount value)
+        changeFrequencyAmount,
+    required TResult Function(SaveNotification value) save,
+  }) {
+    return changeBody(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(ChangeTitle value)? changeTitle,
+    TResult? Function(ChangeBody value)? changeBody,
+    TResult? Function(ChangeStartDate value)? changeStartDate,
+    TResult? Function(ChangeFrequencyType value)? changeFrequencyType,
+    TResult? Function(ChangeFrequencyAmount value)? changeFrequencyAmount,
+    TResult? Function(SaveNotification value)? save,
+  }) {
+    return changeBody?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(ChangeTitle value)? changeTitle,
+    TResult Function(ChangeBody value)? changeBody,
+    TResult Function(ChangeStartDate value)? changeStartDate,
+    TResult Function(ChangeFrequencyType value)? changeFrequencyType,
+    TResult Function(ChangeFrequencyAmount value)? changeFrequencyAmount,
+    TResult Function(SaveNotification value)? save,
+    required TResult orElse(),
+  }) {
+    if (changeBody != null) {
+      return changeBody(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class ChangeBody implements CreateScheduleNotificationEvent {
+  factory ChangeBody({required final String body}) = _$ChangeBodyImpl;
+
+  String get body;
+
+  /// Create a copy of CreateScheduleNotificationEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$ChangeBodyImplCopyWith<_$ChangeBodyImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -326,10 +505,11 @@ class _$ChangeStartDateImpl implements ChangeStartDate {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String name) changeName,
+    required TResult Function(String title) changeTitle,
+    required TResult Function(String body) changeBody,
     required TResult Function(DateTime startDate) changeStartDate,
-    required TResult Function(FrequencyType frequencyType) changeType,
-    required TResult Function(int frequencyAmount) changeAmount,
+    required TResult Function(FrequencyType frequencyType) changeFrequencyType,
+    required TResult Function(int frequencyAmount) changeFrequencyAmount,
     required TResult Function() save,
   }) {
     return changeStartDate(startDate);
@@ -338,10 +518,11 @@ class _$ChangeStartDateImpl implements ChangeStartDate {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String name)? changeName,
+    TResult? Function(String title)? changeTitle,
+    TResult? Function(String body)? changeBody,
     TResult? Function(DateTime startDate)? changeStartDate,
-    TResult? Function(FrequencyType frequencyType)? changeType,
-    TResult? Function(int frequencyAmount)? changeAmount,
+    TResult? Function(FrequencyType frequencyType)? changeFrequencyType,
+    TResult? Function(int frequencyAmount)? changeFrequencyAmount,
     TResult? Function()? save,
   }) {
     return changeStartDate?.call(startDate);
@@ -350,10 +531,11 @@ class _$ChangeStartDateImpl implements ChangeStartDate {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String name)? changeName,
+    TResult Function(String title)? changeTitle,
+    TResult Function(String body)? changeBody,
     TResult Function(DateTime startDate)? changeStartDate,
-    TResult Function(FrequencyType frequencyType)? changeType,
-    TResult Function(int frequencyAmount)? changeAmount,
+    TResult Function(FrequencyType frequencyType)? changeFrequencyType,
+    TResult Function(int frequencyAmount)? changeFrequencyAmount,
     TResult Function()? save,
     required TResult orElse(),
   }) {
@@ -366,10 +548,12 @@ class _$ChangeStartDateImpl implements ChangeStartDate {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(ChangeName value) changeName,
+    required TResult Function(ChangeTitle value) changeTitle,
+    required TResult Function(ChangeBody value) changeBody,
     required TResult Function(ChangeStartDate value) changeStartDate,
-    required TResult Function(ChangeFrequencyType value) changeType,
-    required TResult Function(ChangeFrequencyAmount value) changeAmount,
+    required TResult Function(ChangeFrequencyType value) changeFrequencyType,
+    required TResult Function(ChangeFrequencyAmount value)
+        changeFrequencyAmount,
     required TResult Function(SaveNotification value) save,
   }) {
     return changeStartDate(this);
@@ -378,10 +562,11 @@ class _$ChangeStartDateImpl implements ChangeStartDate {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(ChangeName value)? changeName,
+    TResult? Function(ChangeTitle value)? changeTitle,
+    TResult? Function(ChangeBody value)? changeBody,
     TResult? Function(ChangeStartDate value)? changeStartDate,
-    TResult? Function(ChangeFrequencyType value)? changeType,
-    TResult? Function(ChangeFrequencyAmount value)? changeAmount,
+    TResult? Function(ChangeFrequencyType value)? changeFrequencyType,
+    TResult? Function(ChangeFrequencyAmount value)? changeFrequencyAmount,
     TResult? Function(SaveNotification value)? save,
   }) {
     return changeStartDate?.call(this);
@@ -390,10 +575,11 @@ class _$ChangeStartDateImpl implements ChangeStartDate {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(ChangeName value)? changeName,
+    TResult Function(ChangeTitle value)? changeTitle,
+    TResult Function(ChangeBody value)? changeBody,
     TResult Function(ChangeStartDate value)? changeStartDate,
-    TResult Function(ChangeFrequencyType value)? changeType,
-    TResult Function(ChangeFrequencyAmount value)? changeAmount,
+    TResult Function(ChangeFrequencyType value)? changeFrequencyType,
+    TResult Function(ChangeFrequencyAmount value)? changeFrequencyAmount,
     TResult Function(SaveNotification value)? save,
     required TResult orElse(),
   }) {
@@ -461,7 +647,7 @@ class _$ChangeFrequencyTypeImpl implements ChangeFrequencyType {
 
   @override
   String toString() {
-    return 'CreateScheduleNotificationEvent.changeType(frequencyType: $frequencyType)';
+    return 'CreateScheduleNotificationEvent.changeFrequencyType(frequencyType: $frequencyType)';
   }
 
   @override
@@ -488,39 +674,42 @@ class _$ChangeFrequencyTypeImpl implements ChangeFrequencyType {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String name) changeName,
+    required TResult Function(String title) changeTitle,
+    required TResult Function(String body) changeBody,
     required TResult Function(DateTime startDate) changeStartDate,
-    required TResult Function(FrequencyType frequencyType) changeType,
-    required TResult Function(int frequencyAmount) changeAmount,
+    required TResult Function(FrequencyType frequencyType) changeFrequencyType,
+    required TResult Function(int frequencyAmount) changeFrequencyAmount,
     required TResult Function() save,
   }) {
-    return changeType(frequencyType);
+    return changeFrequencyType(frequencyType);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String name)? changeName,
+    TResult? Function(String title)? changeTitle,
+    TResult? Function(String body)? changeBody,
     TResult? Function(DateTime startDate)? changeStartDate,
-    TResult? Function(FrequencyType frequencyType)? changeType,
-    TResult? Function(int frequencyAmount)? changeAmount,
+    TResult? Function(FrequencyType frequencyType)? changeFrequencyType,
+    TResult? Function(int frequencyAmount)? changeFrequencyAmount,
     TResult? Function()? save,
   }) {
-    return changeType?.call(frequencyType);
+    return changeFrequencyType?.call(frequencyType);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String name)? changeName,
+    TResult Function(String title)? changeTitle,
+    TResult Function(String body)? changeBody,
     TResult Function(DateTime startDate)? changeStartDate,
-    TResult Function(FrequencyType frequencyType)? changeType,
-    TResult Function(int frequencyAmount)? changeAmount,
+    TResult Function(FrequencyType frequencyType)? changeFrequencyType,
+    TResult Function(int frequencyAmount)? changeFrequencyAmount,
     TResult Function()? save,
     required TResult orElse(),
   }) {
-    if (changeType != null) {
-      return changeType(frequencyType);
+    if (changeFrequencyType != null) {
+      return changeFrequencyType(frequencyType);
     }
     return orElse();
   }
@@ -528,39 +717,43 @@ class _$ChangeFrequencyTypeImpl implements ChangeFrequencyType {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(ChangeName value) changeName,
+    required TResult Function(ChangeTitle value) changeTitle,
+    required TResult Function(ChangeBody value) changeBody,
     required TResult Function(ChangeStartDate value) changeStartDate,
-    required TResult Function(ChangeFrequencyType value) changeType,
-    required TResult Function(ChangeFrequencyAmount value) changeAmount,
+    required TResult Function(ChangeFrequencyType value) changeFrequencyType,
+    required TResult Function(ChangeFrequencyAmount value)
+        changeFrequencyAmount,
     required TResult Function(SaveNotification value) save,
   }) {
-    return changeType(this);
+    return changeFrequencyType(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(ChangeName value)? changeName,
+    TResult? Function(ChangeTitle value)? changeTitle,
+    TResult? Function(ChangeBody value)? changeBody,
     TResult? Function(ChangeStartDate value)? changeStartDate,
-    TResult? Function(ChangeFrequencyType value)? changeType,
-    TResult? Function(ChangeFrequencyAmount value)? changeAmount,
+    TResult? Function(ChangeFrequencyType value)? changeFrequencyType,
+    TResult? Function(ChangeFrequencyAmount value)? changeFrequencyAmount,
     TResult? Function(SaveNotification value)? save,
   }) {
-    return changeType?.call(this);
+    return changeFrequencyType?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(ChangeName value)? changeName,
+    TResult Function(ChangeTitle value)? changeTitle,
+    TResult Function(ChangeBody value)? changeBody,
     TResult Function(ChangeStartDate value)? changeStartDate,
-    TResult Function(ChangeFrequencyType value)? changeType,
-    TResult Function(ChangeFrequencyAmount value)? changeAmount,
+    TResult Function(ChangeFrequencyType value)? changeFrequencyType,
+    TResult Function(ChangeFrequencyAmount value)? changeFrequencyAmount,
     TResult Function(SaveNotification value)? save,
     required TResult orElse(),
   }) {
-    if (changeType != null) {
-      return changeType(this);
+    if (changeFrequencyType != null) {
+      return changeFrequencyType(this);
     }
     return orElse();
   }
@@ -624,7 +817,7 @@ class _$ChangeFrequencyAmountImpl implements ChangeFrequencyAmount {
 
   @override
   String toString() {
-    return 'CreateScheduleNotificationEvent.changeAmount(frequencyAmount: $frequencyAmount)';
+    return 'CreateScheduleNotificationEvent.changeFrequencyAmount(frequencyAmount: $frequencyAmount)';
   }
 
   @override
@@ -651,39 +844,42 @@ class _$ChangeFrequencyAmountImpl implements ChangeFrequencyAmount {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String name) changeName,
+    required TResult Function(String title) changeTitle,
+    required TResult Function(String body) changeBody,
     required TResult Function(DateTime startDate) changeStartDate,
-    required TResult Function(FrequencyType frequencyType) changeType,
-    required TResult Function(int frequencyAmount) changeAmount,
+    required TResult Function(FrequencyType frequencyType) changeFrequencyType,
+    required TResult Function(int frequencyAmount) changeFrequencyAmount,
     required TResult Function() save,
   }) {
-    return changeAmount(frequencyAmount);
+    return changeFrequencyAmount(frequencyAmount);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String name)? changeName,
+    TResult? Function(String title)? changeTitle,
+    TResult? Function(String body)? changeBody,
     TResult? Function(DateTime startDate)? changeStartDate,
-    TResult? Function(FrequencyType frequencyType)? changeType,
-    TResult? Function(int frequencyAmount)? changeAmount,
+    TResult? Function(FrequencyType frequencyType)? changeFrequencyType,
+    TResult? Function(int frequencyAmount)? changeFrequencyAmount,
     TResult? Function()? save,
   }) {
-    return changeAmount?.call(frequencyAmount);
+    return changeFrequencyAmount?.call(frequencyAmount);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String name)? changeName,
+    TResult Function(String title)? changeTitle,
+    TResult Function(String body)? changeBody,
     TResult Function(DateTime startDate)? changeStartDate,
-    TResult Function(FrequencyType frequencyType)? changeType,
-    TResult Function(int frequencyAmount)? changeAmount,
+    TResult Function(FrequencyType frequencyType)? changeFrequencyType,
+    TResult Function(int frequencyAmount)? changeFrequencyAmount,
     TResult Function()? save,
     required TResult orElse(),
   }) {
-    if (changeAmount != null) {
-      return changeAmount(frequencyAmount);
+    if (changeFrequencyAmount != null) {
+      return changeFrequencyAmount(frequencyAmount);
     }
     return orElse();
   }
@@ -691,39 +887,43 @@ class _$ChangeFrequencyAmountImpl implements ChangeFrequencyAmount {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(ChangeName value) changeName,
+    required TResult Function(ChangeTitle value) changeTitle,
+    required TResult Function(ChangeBody value) changeBody,
     required TResult Function(ChangeStartDate value) changeStartDate,
-    required TResult Function(ChangeFrequencyType value) changeType,
-    required TResult Function(ChangeFrequencyAmount value) changeAmount,
+    required TResult Function(ChangeFrequencyType value) changeFrequencyType,
+    required TResult Function(ChangeFrequencyAmount value)
+        changeFrequencyAmount,
     required TResult Function(SaveNotification value) save,
   }) {
-    return changeAmount(this);
+    return changeFrequencyAmount(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(ChangeName value)? changeName,
+    TResult? Function(ChangeTitle value)? changeTitle,
+    TResult? Function(ChangeBody value)? changeBody,
     TResult? Function(ChangeStartDate value)? changeStartDate,
-    TResult? Function(ChangeFrequencyType value)? changeType,
-    TResult? Function(ChangeFrequencyAmount value)? changeAmount,
+    TResult? Function(ChangeFrequencyType value)? changeFrequencyType,
+    TResult? Function(ChangeFrequencyAmount value)? changeFrequencyAmount,
     TResult? Function(SaveNotification value)? save,
   }) {
-    return changeAmount?.call(this);
+    return changeFrequencyAmount?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(ChangeName value)? changeName,
+    TResult Function(ChangeTitle value)? changeTitle,
+    TResult Function(ChangeBody value)? changeBody,
     TResult Function(ChangeStartDate value)? changeStartDate,
-    TResult Function(ChangeFrequencyType value)? changeType,
-    TResult Function(ChangeFrequencyAmount value)? changeAmount,
+    TResult Function(ChangeFrequencyType value)? changeFrequencyType,
+    TResult Function(ChangeFrequencyAmount value)? changeFrequencyAmount,
     TResult Function(SaveNotification value)? save,
     required TResult orElse(),
   }) {
-    if (changeAmount != null) {
-      return changeAmount(this);
+    if (changeFrequencyAmount != null) {
+      return changeFrequencyAmount(this);
     }
     return orElse();
   }
@@ -785,10 +985,11 @@ class _$SaveNotificationImpl implements SaveNotification {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String name) changeName,
+    required TResult Function(String title) changeTitle,
+    required TResult Function(String body) changeBody,
     required TResult Function(DateTime startDate) changeStartDate,
-    required TResult Function(FrequencyType frequencyType) changeType,
-    required TResult Function(int frequencyAmount) changeAmount,
+    required TResult Function(FrequencyType frequencyType) changeFrequencyType,
+    required TResult Function(int frequencyAmount) changeFrequencyAmount,
     required TResult Function() save,
   }) {
     return save();
@@ -797,10 +998,11 @@ class _$SaveNotificationImpl implements SaveNotification {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String name)? changeName,
+    TResult? Function(String title)? changeTitle,
+    TResult? Function(String body)? changeBody,
     TResult? Function(DateTime startDate)? changeStartDate,
-    TResult? Function(FrequencyType frequencyType)? changeType,
-    TResult? Function(int frequencyAmount)? changeAmount,
+    TResult? Function(FrequencyType frequencyType)? changeFrequencyType,
+    TResult? Function(int frequencyAmount)? changeFrequencyAmount,
     TResult? Function()? save,
   }) {
     return save?.call();
@@ -809,10 +1011,11 @@ class _$SaveNotificationImpl implements SaveNotification {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String name)? changeName,
+    TResult Function(String title)? changeTitle,
+    TResult Function(String body)? changeBody,
     TResult Function(DateTime startDate)? changeStartDate,
-    TResult Function(FrequencyType frequencyType)? changeType,
-    TResult Function(int frequencyAmount)? changeAmount,
+    TResult Function(FrequencyType frequencyType)? changeFrequencyType,
+    TResult Function(int frequencyAmount)? changeFrequencyAmount,
     TResult Function()? save,
     required TResult orElse(),
   }) {
@@ -825,10 +1028,12 @@ class _$SaveNotificationImpl implements SaveNotification {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(ChangeName value) changeName,
+    required TResult Function(ChangeTitle value) changeTitle,
+    required TResult Function(ChangeBody value) changeBody,
     required TResult Function(ChangeStartDate value) changeStartDate,
-    required TResult Function(ChangeFrequencyType value) changeType,
-    required TResult Function(ChangeFrequencyAmount value) changeAmount,
+    required TResult Function(ChangeFrequencyType value) changeFrequencyType,
+    required TResult Function(ChangeFrequencyAmount value)
+        changeFrequencyAmount,
     required TResult Function(SaveNotification value) save,
   }) {
     return save(this);
@@ -837,10 +1042,11 @@ class _$SaveNotificationImpl implements SaveNotification {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(ChangeName value)? changeName,
+    TResult? Function(ChangeTitle value)? changeTitle,
+    TResult? Function(ChangeBody value)? changeBody,
     TResult? Function(ChangeStartDate value)? changeStartDate,
-    TResult? Function(ChangeFrequencyType value)? changeType,
-    TResult? Function(ChangeFrequencyAmount value)? changeAmount,
+    TResult? Function(ChangeFrequencyType value)? changeFrequencyType,
+    TResult? Function(ChangeFrequencyAmount value)? changeFrequencyAmount,
     TResult? Function(SaveNotification value)? save,
   }) {
     return save?.call(this);
@@ -849,10 +1055,11 @@ class _$SaveNotificationImpl implements SaveNotification {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(ChangeName value)? changeName,
+    TResult Function(ChangeTitle value)? changeTitle,
+    TResult Function(ChangeBody value)? changeBody,
     TResult Function(ChangeStartDate value)? changeStartDate,
-    TResult Function(ChangeFrequencyType value)? changeType,
-    TResult Function(ChangeFrequencyAmount value)? changeAmount,
+    TResult Function(ChangeFrequencyType value)? changeFrequencyType,
+    TResult Function(ChangeFrequencyAmount value)? changeFrequencyAmount,
     TResult Function(SaveNotification value)? save,
     required TResult orElse(),
   }) {
@@ -869,7 +1076,8 @@ abstract class SaveNotification implements CreateScheduleNotificationEvent {
 
 /// @nodoc
 mixin _$CreateScheduleNotificationState {
-  String get name => throw _privateConstructorUsedError;
+  String get title => throw _privateConstructorUsedError;
+  String get body => throw _privateConstructorUsedError;
   DateTime get startDate => throw _privateConstructorUsedError;
   FrequencyType get frequencyType => throw _privateConstructorUsedError;
   int get frequencyAmount => throw _privateConstructorUsedError;
@@ -890,7 +1098,8 @@ abstract class $CreateScheduleNotificationStateCopyWith<$Res> {
           CreateScheduleNotificationState>;
   @useResult
   $Res call(
-      {String name,
+      {String title,
+      String body,
       DateTime startDate,
       FrequencyType frequencyType,
       int frequencyAmount});
@@ -912,15 +1121,20 @@ class _$CreateScheduleNotificationStateCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? name = null,
+    Object? title = null,
+    Object? body = null,
     Object? startDate = null,
     Object? frequencyType = null,
     Object? frequencyAmount = null,
   }) {
     return _then(_value.copyWith(
-      name: null == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
+      title: null == title
+          ? _value.title
+          : title // ignore: cast_nullable_to_non_nullable
+              as String,
+      body: null == body
+          ? _value.body
+          : body // ignore: cast_nullable_to_non_nullable
               as String,
       startDate: null == startDate
           ? _value.startDate
@@ -947,7 +1161,8 @@ abstract class _$$NotificationStateImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String name,
+      {String title,
+      String body,
       DateTime startDate,
       FrequencyType frequencyType,
       int frequencyAmount});
@@ -967,15 +1182,20 @@ class __$$NotificationStateImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? name = null,
+    Object? title = null,
+    Object? body = null,
     Object? startDate = null,
     Object? frequencyType = null,
     Object? frequencyAmount = null,
   }) {
     return _then(_$NotificationStateImpl(
-      name: null == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
+      title: null == title
+          ? _value.title
+          : title // ignore: cast_nullable_to_non_nullable
+              as String,
+      body: null == body
+          ? _value.body
+          : body // ignore: cast_nullable_to_non_nullable
               as String,
       startDate: null == startDate
           ? _value.startDate
@@ -997,14 +1217,18 @@ class __$$NotificationStateImplCopyWithImpl<$Res>
 
 class _$NotificationStateImpl implements _NotificationState {
   _$NotificationStateImpl(
-      {this.name = '',
+      {this.title = '',
+      this.body = '',
       required this.startDate,
       this.frequencyType = FrequencyType.none,
       this.frequencyAmount = 1});
 
   @override
   @JsonKey()
-  final String name;
+  final String title;
+  @override
+  @JsonKey()
+  final String body;
   @override
   final DateTime startDate;
   @override
@@ -1016,7 +1240,7 @@ class _$NotificationStateImpl implements _NotificationState {
 
   @override
   String toString() {
-    return 'CreateScheduleNotificationState(name: $name, startDate: $startDate, frequencyType: $frequencyType, frequencyAmount: $frequencyAmount)';
+    return 'CreateScheduleNotificationState(title: $title, body: $body, startDate: $startDate, frequencyType: $frequencyType, frequencyAmount: $frequencyAmount)';
   }
 
   @override
@@ -1024,7 +1248,8 @@ class _$NotificationStateImpl implements _NotificationState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$NotificationStateImpl &&
-            (identical(other.name, name) || other.name == name) &&
+            (identical(other.title, title) || other.title == title) &&
+            (identical(other.body, body) || other.body == body) &&
             (identical(other.startDate, startDate) ||
                 other.startDate == startDate) &&
             (identical(other.frequencyType, frequencyType) ||
@@ -1034,8 +1259,8 @@ class _$NotificationStateImpl implements _NotificationState {
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, name, startDate, frequencyType, frequencyAmount);
+  int get hashCode => Object.hash(
+      runtimeType, title, body, startDate, frequencyType, frequencyAmount);
 
   /// Create a copy of CreateScheduleNotificationState
   /// with the given fields replaced by the non-null parameter values.
@@ -1049,13 +1274,16 @@ class _$NotificationStateImpl implements _NotificationState {
 
 abstract class _NotificationState implements CreateScheduleNotificationState {
   factory _NotificationState(
-      {final String name,
+      {final String title,
+      final String body,
       required final DateTime startDate,
       final FrequencyType frequencyType,
       final int frequencyAmount}) = _$NotificationStateImpl;
 
   @override
-  String get name;
+  String get title;
+  @override
+  String get body;
   @override
   DateTime get startDate;
   @override

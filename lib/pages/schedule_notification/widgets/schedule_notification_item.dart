@@ -66,13 +66,31 @@ class NotificationItem extends StatelessWidget {
         ),
       ),
       child: ListTile(
-        title: Text(
-          model.name,
-          style: Theme.of(context).textTheme.bodyLarge,
+        title: Row(
+          children: [
+            Text(
+              model.title,
+              style: Theme.of(context).textTheme.bodyLarge,
+            ),
+            const SizedBox(width: 8),
+            Text(
+              'Every ${model.frequencyAmount} ${model.frequencyType.title}',
+              style: Theme.of(context)
+                  .textTheme
+                  .labelMedium
+                  ?.apply(color: Theme.of(context).colorScheme.primary),
+            ),
+          ],
         ),
-        subtitle: Text(
-          'Every ${model.frequencyAmount} ${model.frequencyType.title}',
-          style: Theme.of(context).textTheme.bodyMedium,
+        subtitle: Offstage(
+          offstage: (model.body ?? '').isEmpty,
+          child: Text(
+            model.body ?? '',
+            style: Theme.of(context)
+                .textTheme
+                .bodyMedium
+                ?.apply(color: Theme.of(context).colorScheme.secondary),
+          ),
         ),
         trailing: Text(
           DateFormat.Hm().format(model.startDate),
