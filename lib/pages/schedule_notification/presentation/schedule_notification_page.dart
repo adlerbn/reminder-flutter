@@ -92,7 +92,7 @@ class ScheduleNotificationPage extends StatelessWidget {
   Future<void> _addNotificationButtonAction(BuildContext context) async {
     Navigator.pushNamed(
       context,
-      '/schedule-notification-page/create-notification-page',
+      '/schedule-notification-page/create-schedule-notification-page',
     );
   }
 

@@ -50,13 +50,27 @@ class NotificationItem extends StatelessWidget {
           );
 
           return dismiss;
+        } else if (direction == DismissDirection.startToEnd) {
+          Navigator.pushNamed(
+            context,
+            '/schedule-notification-page/edit-schedule-notification-page',
+            arguments: model,
+          );
         }
 
         return null;
       },
-      direction: DismissDirection.endToStart,
       dismissThresholds: const {DismissDirection.endToStart: 0.3},
       background: Container(
+        color: Colors.blue,
+        padding: const EdgeInsets.symmetric(horizontal: 20),
+        alignment: Alignment.centerLeft,
+        child: const Icon(
+          Icons.edit,
+          color: Colors.white,
+        ),
+      ),
+      secondaryBackground: Container(
         color: Colors.red,
         padding: const EdgeInsets.symmetric(horizontal: 20),
         alignment: Alignment.centerRight,
@@ -66,21 +80,11 @@ class NotificationItem extends StatelessWidget {
         ),
       ),
       child: ListTile(
-        title: Row(
-          children: [
-            Text(
-              model.title,
-              style: Theme.of(context).textTheme.bodyLarge,
-            ),
-            const SizedBox(width: 8),
-            Text(
-              'Every ${model.frequencyAmount} ${model.frequencyType.title}',
-              style: Theme.of(context)
-                  .textTheme
-                  .labelMedium
-                  ?.apply(color: Theme.of(context).colorScheme.primary),
-            ),
-          ],
+        title: Text(
+          model.title,
+          style: Theme.of(context).textTheme.bodyLarge,
+          maxLines: 1,
+          overflow: TextOverflow.ellipsis,
         ),
         subtitle: Offstage(
           offstage: (model.body ?? '').isEmpty,
@@ -92,12 +96,25 @@ class NotificationItem extends StatelessWidget {
                 ?.apply(color: Theme.of(context).colorScheme.secondary),
           ),
         ),
-        trailing: Text(
-          DateFormat.Hm().format(model.startDate),
-          style: Theme.of(context)
-              .textTheme
-              .titleLarge
-              ?.apply(color: Theme.of(context).colorScheme.tertiary),
+        trailing: Column(
+          crossAxisAlignment: CrossAxisAlignment.end,
+          children: [
+            Text(
+              DateFormat.Hm().format(model.startDate),
+              style: Theme.of(context)
+                  .textTheme
+                  .titleLarge
+                  ?.apply(color: Theme.of(context).colorScheme.tertiary),
+            ),
+            const SizedBox(height: 4),
+            Text(
+              'Every ${model.frequencyAmount} ${model.frequencyType.title}',
+              style: Theme.of(context)
+                  .textTheme
+                  .labelMedium
+                  ?.apply(color: Theme.of(context).colorScheme.primary),
+            ),
+          ],
         ),
       ),
     );

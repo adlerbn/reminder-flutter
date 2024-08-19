@@ -2,10 +2,13 @@ import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:reminder/core/injection/injection.dart';
+import 'package:reminder/models/notification_entity_model.dart';
 import 'package:reminder/pages/home/presentation/home_page.dart';
 import 'package:reminder/pages/schedule_notification/bloc/create/create_notification_bloc.dart';
+import 'package:reminder/pages/schedule_notification/bloc/edit/edit_notification_bloc.dart';
 import 'package:reminder/pages/schedule_notification/bloc/manager/schedule_notification_bloc.dart';
 import 'package:reminder/pages/schedule_notification/presentation/create_schedule_notification_page.dart';
+import 'package:reminder/pages/schedule_notification/presentation/edit_schedule_notification_page.dart';
 import 'package:reminder/pages/schedule_notification/presentation/schedule_notification_page.dart';
 import 'package:reminder/pages/simple_notification/bloc/simple_notification_bloc.dart';
 import 'package:reminder/pages/simple_notification/presentation/simple_notification_page.dart';
@@ -57,11 +60,22 @@ class App extends StatelessWidget {
               );
             });
 
-          case '/schedule-notification-page/create-notification-page':
+          case '/schedule-notification-page/create-schedule-notification-page':
             return MaterialPageRoute(builder: (context) {
               return BlocProvider(
                 create: (context) => locator<CreateScheduleNotificationBloc>(),
                 child: CreateScheduleNotificationPage(),
+              );
+            });
+
+          case '/schedule-notification-page/edit-schedule-notification-page':
+            return MaterialPageRoute(builder: (context) {
+              final model = settings.arguments as NotificationEntityModel;
+
+              return BlocProvider(
+                create: (context) =>
+                    locator<EditScheduleNotificationBloc>(param1: model),
+                child: EditScheduleNotificationPage(),
               );
             });
 

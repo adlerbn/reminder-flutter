@@ -3,22 +3,22 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart' as intl;
 import 'package:reminder/models/frequency_type.dart';
-import 'package:reminder/pages/schedule_notification/bloc/create/create_notification_bloc.dart';
+import 'package:reminder/pages/schedule_notification/bloc/edit/edit_notification_bloc.dart';
 
-class CreateScheduleNotificationPage extends StatelessWidget {
+class EditScheduleNotificationPage extends StatelessWidget {
   final _formKey = GlobalKey<FormState>();
 
-  CreateScheduleNotificationPage({super.key});
+  EditScheduleNotificationPage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<CreateScheduleNotificationBloc,
-        CreateScheduleNotificationState>(
+    return BlocBuilder<EditScheduleNotificationBloc,
+        EditScheduleNotificationState>(
       builder: (context, state) {
         return Scaffold(
           appBar: AppBar(
             title: Text(
-              'New Schedule Notification',
+              'Edit Schedule Notification',
               style: Theme.of(context).textTheme.titleMedium,
             ),
             centerTitle: true,
@@ -61,15 +61,15 @@ class CreateScheduleNotificationPage extends StatelessWidget {
   }
 
   Widget _titleField(BuildContext context) {
-    final bloc = context.read<CreateScheduleNotificationBloc>();
-    final initialValue = bloc.state.title;
+    final bloc = context.read<EditScheduleNotificationBloc>();
+    final initialValue = bloc.state.tempModel.title;
 
     return TextFormField(
       initialValue: initialValue,
       keyboardType: TextInputType.text,
       decoration: const InputDecoration(labelText: "Title"),
       onChanged: (value) =>
-          bloc.add(CreateScheduleNotificationEvent.changeTitle(title: value)),
+          bloc.add(EditScheduleNotificationEvent.changeTitle(title: value)),
       validator: (value) {
         if (value == null) return null;
 
@@ -83,8 +83,8 @@ class CreateScheduleNotificationPage extends StatelessWidget {
   }
 
   Widget _bodyField(BuildContext context) {
-    final bloc = context.read<CreateScheduleNotificationBloc>();
-    final initialValue = bloc.state.body;
+    final bloc = context.read<EditScheduleNotificationBloc>();
+    final initialValue = bloc.state.tempModel.body;
 
     return TextFormField(
       initialValue: initialValue,
@@ -94,13 +94,13 @@ class CreateScheduleNotificationPage extends StatelessWidget {
         helperText: "(Optional)",
       ),
       onChanged: (value) =>
-          bloc.add(CreateScheduleNotificationEvent.changeBody(body: value)),
+          bloc.add(EditScheduleNotificationEvent.changeBody(body: value)),
     );
   }
 
   Widget _startTimeField(BuildContext context) {
-    final bloc = context.read<CreateScheduleNotificationBloc>();
-    final startDate = bloc.state.startDate;
+    final bloc = context.read<EditScheduleNotificationBloc>();
+    final startDate = bloc.state.tempModel.startDate;
     final initialValue = intl.DateFormat.Hm().format(startDate);
     final controller = TextEditingController(text: initialValue);
 
@@ -119,7 +119,7 @@ class CreateScheduleNotificationPage extends StatelessWidget {
             ),
           );
 
-          bloc.add(CreateScheduleNotificationEvent.changeStartDate(
+          bloc.add(EditScheduleNotificationEvent.changeStartDate(
             startDate: startDate.copyWith(
               hour: time?.hour,
               minute: time?.minute,
@@ -131,8 +131,8 @@ class CreateScheduleNotificationPage extends StatelessWidget {
   }
 
   Widget _startDateField(BuildContext context) {
-    final bloc = context.read<CreateScheduleNotificationBloc>();
-    final startDate = bloc.state.startDate;
+    final bloc = context.read<EditScheduleNotificationBloc>();
+    final startDate = bloc.state.tempModel.startDate;
     final initialValue = intl.DateFormat.yMd().format(startDate);
     final controller = TextEditingController(text: initialValue);
 
@@ -150,7 +150,7 @@ class CreateScheduleNotificationPage extends StatelessWidget {
             lastDate: DateTime(DateTime.now().year + 1),
           );
 
-          bloc.add(CreateScheduleNotificationEvent.changeStartDate(
+          bloc.add(EditScheduleNotificationEvent.changeStartDate(
             startDate: startDate.copyWith(
               year: date?.year,
               month: date?.month,
@@ -163,14 +163,14 @@ class CreateScheduleNotificationPage extends StatelessWidget {
   }
 
   Widget _frequencyTypeDropdownField(BuildContext context) {
-    final bloc = context.read<CreateScheduleNotificationBloc>();
+    final bloc = context.read<EditScheduleNotificationBloc>();
     final items = FrequencyType.values
         .map((e) => DropdownMenuItem(
               value: e,
               child: Text(e.name),
             ))
         .toList();
-    final value = bloc.state.frequencyType;
+    final value = bloc.state.tempModel.frequencyType;
     final isSelected = value != FrequencyType.none;
 
     return Expanded(
@@ -179,7 +179,7 @@ class CreateScheduleNotificationPage extends StatelessWidget {
         decoration: const InputDecoration(labelText: "Frequency"),
         items: items,
         onChanged: (value) => bloc.add(
-            CreateScheduleNotificationEvent.changeFrequencyType(
+            EditScheduleNotificationEvent.changeFrequencyType(
                 frequencyType: value ?? FrequencyType.none)),
         validator: (value) {
           if (value == null) return null;
@@ -195,8 +195,8 @@ class CreateScheduleNotificationPage extends StatelessWidget {
   }
 
   Widget _frequencyAmountField(BuildContext context) {
-    final bloc = context.read<CreateScheduleNotificationBloc>();
-    final initialValue = bloc.state.frequencyAmount;
+    final bloc = context.read<EditScheduleNotificationBloc>();
+    final initialValue = bloc.state.tempModel.frequencyAmount;
 
     return Expanded(
       child: TextFormField(
@@ -204,7 +204,7 @@ class CreateScheduleNotificationPage extends StatelessWidget {
         inputFormatters: [FilteringTextInputFormatter.digitsOnly],
         decoration: const InputDecoration(labelText: "Frequency amount"),
         onChanged: (value) => bloc.add(
-            CreateScheduleNotificationEvent.changeFrequencyAmount(
+            EditScheduleNotificationEvent.changeFrequencyAmount(
                 frequencyAmount: int.tryParse(value) ?? 1)),
         keyboardType: TextInputType.number,
       ),
@@ -212,9 +212,9 @@ class CreateScheduleNotificationPage extends StatelessWidget {
   }
 
   Widget _frequencyResult(BuildContext context) {
-    final bloc = context.read<CreateScheduleNotificationBloc>();
-    final frequencyType = bloc.state.frequencyType;
-    final frequencyAmount = bloc.state.frequencyAmount;
+    final bloc = context.read<EditScheduleNotificationBloc>();
+    final frequencyType = bloc.state.tempModel.frequencyType;
+    final frequencyAmount = bloc.state.tempModel.frequencyAmount;
     final isSelected = frequencyType != FrequencyType.none;
 
     return Text(
@@ -239,8 +239,8 @@ class CreateScheduleNotificationPage extends StatelessWidget {
   Future<void> _addNotificationButtonAction(BuildContext context) async {
     if (_formKey.currentState!.validate()) {
       context
-          .read<CreateScheduleNotificationBloc>()
-          .add(CreateScheduleNotificationEvent.save());
+          .read<EditScheduleNotificationBloc>()
+          .add(EditScheduleNotificationEvent.save());
 
       Navigator.pop(context);
     }

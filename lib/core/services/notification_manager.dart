@@ -95,6 +95,10 @@ class NotificationManager {
         payload: payload,
         wakeUpScreen: true,
         fullScreenIntent: true,
+        criticalAlert: true,
+        locked: true,
+        displayOnBackground: true,
+        displayOnForeground: true,
       ),
       schedule: NotificationCalendar.fromDate(
         date: date,
@@ -123,6 +127,10 @@ class NotificationManager {
         payload: payload,
         wakeUpScreen: true,
         fullScreenIntent: true,
+        criticalAlert: true,
+        locked: true,
+        displayOnBackground: true,
+        displayOnForeground: true,
       ),
       actionButtons: actionButtons,
       schedule: scheduleDate != null
