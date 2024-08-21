@@ -1,7 +1,5 @@
 import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:reminder/core/log/logger.dart';
-import 'package:reminder/core/services/notification_manager.dart';
-import 'package:reminder/models/notification_entity_model.dart';
 
 class NotificationController {
   /// Use this method to detect when a new notification or a schedule is created
@@ -16,23 +14,6 @@ class NotificationController {
   static Future<void> onNotificationDisplayedMethod(
       ReceivedNotification receivedNotification) async {
     logger.i('onNotificationDisplayedMethod: $receivedNotification');
-
-    final payload = receivedNotification.payload;
-    if (payload == null) return;
-
-    final notification = NotificationEntityModel.fromMap(payload);
-    final nextDate = (receivedNotification.displayedDate ?? DateTime.now())
-        .add(Duration(seconds: notification.interval));
-
-    if (notification.id == null) return;
-
-    await NotificationManager().showSchedule(
-      id: notification.id!,
-      title: notification.title,
-      body: notification.body,
-      date: nextDate,
-      payload: payload,
-    );
   }
 
   /// Use this method to detect if the user dismissed a notification

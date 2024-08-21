@@ -4,8 +4,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:reminder/core/log/logger.dart';
-import 'package:reminder/core/services/notification_manager.dart';
-import 'package:reminder/core/services/notification_service.dart';
+import 'package:reminder/core/usecases/delete_schedule_notification_usecase.dart';
+import 'package:reminder/core/usecases/get_schedule_notification_list_usecase.dart';
 import 'package:reminder/models/notification_entity_model.dart';
 
 part 'schedule_notification_bloc.freezed.dart';
@@ -15,12 +15,12 @@ part 'schedule_notification_state.dart';
 @injectable
 class ScheduleNotificationBloc
     extends Bloc<ScheduleNotificationEvent, ScheduleNotificationState> {
-  final NotificationManager manager;
-  final NotificationService service;
+  final GetScheduleNotificationListUsecase _getScheduleNotificationListUsecase;
+  final DeleteScheduleNotificationUseCase _deleteScheduleNotificationUseCase;
 
   ScheduleNotificationBloc(
-    this.manager,
-    this.service,
+    this._getScheduleNotificationListUsecase,
+    this._deleteScheduleNotificationUseCase,
   ) : super(ScheduleNotificationState.loading()) {
     on<Fetch>(_fetchEvent);
     on<Remove>(_removeEvent);
@@ -30,11 +30,9 @@ class ScheduleNotificationBloc
     Fetch event,
     Emitter<ScheduleNotificationState> emit,
   ) async {
-    await manager.requestPermission();
-
     emit(ScheduleNotificationState.loading());
 
-    await service.getList().then(
+    await _getScheduleNotificationListUsecase().then(
       (value) {
         emit(ScheduleNotificationState.success(list: value));
       },
@@ -49,15 +47,11 @@ class ScheduleNotificationBloc
     Remove event,
     Emitter<ScheduleNotificationState> emit,
   ) async {
-    final id = event.entity.id;
-    if (id == null) return;
-    await service.delete(id).then(
+    await _deleteScheduleNotificationUseCase(event.entity).then(
       (_) async {
-        await manager.cancelSchedule(id);
-
         logger.i('Schedule notification deleted');
 
-        await service.getList().then(
+        await _getScheduleNotificationListUsecase().then(
           (value) {
             emit(ScheduleNotificationState.success(list: value));
           },

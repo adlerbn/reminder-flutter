@@ -1,12 +1,11 @@
 import 'dart:async';
 
-import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:reminder/core/log/logger.dart';
-import 'package:reminder/core/services/notification_manager.dart';
-import 'package:reminder/core/services/notification_service.dart';
+import 'package:reminder/core/usecases/create_notification_usecase.dart';
+import 'package:reminder/core/usecases/request_notification_permission_usecase.dart';
 
 part 'simple_notification_bloc.freezed.dart';
 part 'simple_notification_event.dart';
@@ -15,12 +14,13 @@ part 'simple_notification_state.dart';
 @injectable
 class SimpleNotificationBloc
     extends Bloc<SimpleNotificationEvent, SimpleNotificationState> {
-  final NotificationManager manager;
-  final NotificationService service;
+  final RequestNotificationPermissionUsecase
+      _requestNotificationPermissionUsecase;
+  final CreateNotificationUsecase _createNotificationUsecase;
 
   SimpleNotificationBloc(
-    this.manager,
-    this.service,
+    this._requestNotificationPermissionUsecase,
+    this._createNotificationUsecase,
   ) : super(SimpleNotificationState()) {
     on<ShowNow>(_showNowEvent);
   }
@@ -29,18 +29,12 @@ class SimpleNotificationBloc
     ShowNow event,
     Emitter<SimpleNotificationState> emit,
   ) async {
-    await manager.requestPermission();
+    await _requestNotificationPermissionUsecase();
 
-    await manager.show(
-        title: 'Simple notification',
-        body: 'This is body',
-        actionButtons: [
-          NotificationActionButton(
-            key: '1',
-            label: 'Move to home',
-            actionType: ActionType.KeepOnTop,
-          ),
-        ]).then(
+    await _createNotificationUsecase(
+      title: 'Simple notification',
+      body: 'This is body',
+    ).then(
       (_) {
         logger.i('Simple notification created');
       },

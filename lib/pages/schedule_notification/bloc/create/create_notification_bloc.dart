@@ -4,8 +4,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:reminder/core/log/logger.dart';
-import 'package:reminder/core/services/notification_manager.dart';
-import 'package:reminder/core/services/notification_service.dart';
+import 'package:reminder/core/usecases/create_schedule_notification_usecase.dart';
+import 'package:reminder/core/usecases/request_notification_permission_usecase.dart';
 import 'package:reminder/models/frequency_type.dart';
 import 'package:reminder/models/notification_entity_model.dart';
 
@@ -16,12 +16,13 @@ part 'create_notification_state.dart';
 @injectable
 class CreateScheduleNotificationBloc extends Bloc<
     CreateScheduleNotificationEvent, CreateScheduleNotificationState> {
-  final NotificationService service;
-  final NotificationManager manager;
+  final RequestNotificationPermissionUsecase
+      _requestNotificationPermissionUsecase;
+  final CreateScheduleNotificationUseCase _createScheduleNotificationUseCase;
 
   CreateScheduleNotificationBloc(
-    this.service,
-    this.manager,
+    this._requestNotificationPermissionUsecase,
+    this._createScheduleNotificationUseCase,
   ) : super(CreateScheduleNotificationState.init()) {
     on<ChangeTitle>(_changeTitleEvent);
     on<ChangeBody>(_changeBodyEvent);
@@ -70,6 +71,8 @@ class CreateScheduleNotificationBloc extends Bloc<
     SaveNotification event,
     Emitter<CreateScheduleNotificationState> emit,
   ) async {
+    await _requestNotificationPermissionUsecase();
+
     final notification = NotificationEntityModel(
       title: state.title,
       body: state.body,
@@ -78,18 +81,7 @@ class CreateScheduleNotificationBloc extends Bloc<
       frequencyAmount: state.frequencyAmount,
     );
 
-    final id = await service.insert(notification);
-    final payload = notification.copyWith(id: id).toMap();
-
-    await manager
-        .showSchedule(
-      id: id,
-      title: state.title,
-      body: state.body,
-      date: state.startDate,
-      payload: payload,
-    )
-        .then(
+    await _createScheduleNotificationUseCase(notification).then(
       (_) {
         logger.i('Schedule notification created');
       },

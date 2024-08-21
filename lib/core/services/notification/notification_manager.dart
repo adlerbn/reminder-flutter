@@ -1,7 +1,7 @@
 import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:flutter/material.dart';
 import 'package:injectable/injectable.dart';
-import 'package:reminder/core/services/notification_controller.dart';
+import 'package:reminder/core/services/notification/notification_controller.dart';
 
 @injectable
 class NotificationManager {
@@ -22,29 +22,12 @@ class NotificationManager {
           criticalAlerts: true,
           locked: true,
         ),
-        NotificationChannel(
-          channelGroupKey: 'schedule_tests',
-          channelKey: 'scheduled',
-          channelName: 'Scheduled notifications',
-          channelDescription: 'Notifications with schedule functionality',
-          defaultColor: Colors.blueAccent,
-          ledColor: Colors.white,
-          importance: NotificationImportance.Max,
-          playSound: true,
-          onlyAlertOnce: true,
-          criticalAlerts: true,
-          locked: true,
-        ),
       ],
       // Channel groups are only visual and are not required
       channelGroups: [
         NotificationChannelGroup(
           channelGroupKey: 'reminder_tests',
           channelGroupName: 'Reminder tests',
-        ),
-        NotificationChannelGroup(
-          channelGroupKey: 'schedule_tests',
-          channelGroupName: 'Schedule tests',
         ),
       ],
       debug: true,
@@ -78,38 +61,10 @@ class NotificationManager {
     });
   }
 
-  Future<void> showSchedule({
-    required int id,
+  Future<void> show({
+    int id = -1,
     required String title,
     String? body,
-    required DateTime date,
-    Map<String, String?>? payload,
-  }) async {
-    await AwesomeNotifications().createNotification(
-      content: NotificationContent(
-        id: id,
-        groupKey: 'schedule_tests',
-        channelKey: 'scheduled',
-        title: title,
-        body: body,
-        payload: payload,
-        wakeUpScreen: true,
-        fullScreenIntent: true,
-        criticalAlert: true,
-        locked: true,
-        displayOnBackground: true,
-        displayOnForeground: true,
-      ),
-      schedule: NotificationCalendar.fromDate(
-        date: date,
-        allowWhileIdle: true,
-      ),
-    );
-  }
-
-  Future<void> show({
-    required String title,
-    required String body,
     Map<String, String>? payload,
     ActionType actionType = ActionType.Default,
     List<NotificationActionButton>? actionButtons,
@@ -117,7 +72,7 @@ class NotificationManager {
   }) async {
     await AwesomeNotifications().createNotification(
       content: NotificationContent(
-        id: -1,
+        id: id,
         groupKey: 'reminder_tests',
         channelKey: 'reminder',
         actionType: actionType,

@@ -4,8 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:reminder/core/log/logger.dart';
-import 'package:reminder/core/services/notification_manager.dart';
-import 'package:reminder/core/services/notification_service.dart';
+import 'package:reminder/core/usecases/update_schedule_notification_usecase.dart';
 import 'package:reminder/models/frequency_type.dart';
 import 'package:reminder/models/notification_entity_model.dart';
 
@@ -16,13 +15,11 @@ part 'edit_notification_state.dart';
 @injectable
 class EditScheduleNotificationBloc
     extends Bloc<EditScheduleNotificationEvent, EditScheduleNotificationState> {
-  final NotificationService service;
-  final NotificationManager manager;
+  final UpdateScheduleNotificationUseCase _updateScheduleNotificationUseCase;
 
   EditScheduleNotificationBloc(
     @factoryParam NotificationEntityModel model,
-    this.service,
-    this.manager,
+    this._updateScheduleNotificationUseCase,
   ) : super(EditScheduleNotificationState(
           model: model,
           tempModel: model,
@@ -80,23 +77,7 @@ class EditScheduleNotificationBloc
     SaveNotification event,
     Emitter<EditScheduleNotificationState> emit,
   ) async {
-    final id = state.tempModel.id;
-    if (id == null) return;
-
-    await service.update(state.tempModel);
-    await manager.cancelSchedule(id);
-
-    final payload = state.tempModel.toMap();
-
-    await manager
-        .showSchedule(
-      id: id,
-      title: state.tempModel.title,
-      body: state.tempModel.body,
-      date: state.tempModel.startDate,
-      payload: payload,
-    )
-        .then(
+    await _updateScheduleNotificationUseCase(state.tempModel).then(
       (_) {
         logger.i('Schedule notification edited');
       },

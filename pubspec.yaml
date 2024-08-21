@@ -10,8 +10,10 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  flutter_local_notifications: ^17.2.2
 
   awesome_notifications_core: any
+  android_alarm_manager_plus: ^4.0.4
   awesome_notifications: any
   visibility_detector: ^0.4.0+2
   freezed_annotation: ^2.4.4
